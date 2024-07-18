@@ -1,0 +1,3 @@
+## ChmlFrpLauncher
+这是一个利用windows系统中终端代码bat文件所开发的简单启动程序
+我把它编译成exe文件
