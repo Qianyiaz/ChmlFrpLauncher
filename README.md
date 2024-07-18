@@ -11,3 +11,6 @@
 
 
 ![0859ded93da3d2f373ee8e1adb68f28f](https://github.com/user-attachments/assets/f92407e1-1b6b-42e6-a8a0-ede553534f1b)
+
+## 相关功能
+在最新版本ChmlFrpLauncher不仅仅只能启动ChmlFrpc还可以启动原版frp。
