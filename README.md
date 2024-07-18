@@ -4,8 +4,7 @@
 我把它编译成exe文件
 
 ## 功能
-它是一个启动frpc的启动器，frp是一种应用广泛的内网穿透 <a href="https://github.com/fatedier/frp">点击前往frp</a>
-
+它是一个启动frpc的启动器，frp是一种应用广泛的内网穿透 
 ## 使用
 只需启动后输入123456数字即可使用
 
@@ -14,3 +13,5 @@
 
 ## 相关功能
 在最新版本ChmlFrpLauncher不仅仅只能启动ChmlFrpc还可以启动原版frp。
+## 相关链接
+<a href="https://space.bilibili.com/1582404131">点击前往billbill</a>
