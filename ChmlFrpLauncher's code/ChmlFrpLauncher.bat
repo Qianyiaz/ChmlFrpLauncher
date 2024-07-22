@@ -1,7 +1,6 @@
 @echo off
-title ChmlFrpLauncher 
-
 :begin 
+title ChmlFrpLauncher 
 color 7a 
 chcp 936
 cls
@@ -18,7 +17,7 @@ echo                 [5]--关闭 frpc
 echo                 [6]--作者 页
 echo                 [7]--退出 bat              
 echo.               
-choice /c 12345678 /n /m "输入（1-8）数字="
+choice /c 1234567 /n /m "输入（1-7）数字="
  echo 您输入的是%errorlevel%
 if %errorlevel% == 1 goto ip1
 if %errorlevel% == 2 goto ip2 
