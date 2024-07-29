@@ -26,7 +26,7 @@ if %errorlevel% == 3 goto ip5
 if %errorlevel% == 4 goto ip3
 if %errorlevel% == 5 goto ip4
 if %errorlevel% == 6 goto ip6 
-if %errorlevel% == 7 goto start
+if %errorlevel% == 7 goto ip15
 if %errorlevel% == 8 goto ip7
 
 :ip1
@@ -39,19 +39,18 @@ frpc -c ./frpc.toml 2>log.txt
 frpc -c ./frpc.ini 2>log.txt
 echo 保存日志后，按任意键返回
 pause>nul
-goto begin
+goto ip15
 
 :ip2
 start "" "frpc.toml."
 start "" "frpc.ini."
-echo.
-goto begin
+goto ip15
 
 :ip3
 start "" "https://www.bilibili.com/video/BV1GJ411x7h7?t=13.8"
 echo 你被骗了
 ping localhost -n 5 > nul
-goto begin
+goto ip15
 
 :ip4
 Color 4A 
@@ -63,18 +62,19 @@ ping 127.0.0.1 -n 15 >nul
 start c:\windows\explorer.exe 
 echo 哈哈哈哈哈哈哈哈
 start "" "indext.html"
-goto begin 
+goto ip15
 
 :ip5
 echo 正在关闭 frpc
 taskkill /im frpc.exe /f 1>nul 2>nul
-goto begin 
+goto ip15
 
 :ip6
 Color 3A
 echo 正在导航
 start "" "index.html"
-goto begin
+ping localhost -n 5 > nul
+goto ip15
 
 :ip7
 echo 正在退出
@@ -87,15 +87,14 @@ echo.
 echo            请选择您要使用的frpc版本
 echo             ————————————————————————
 echo                 [1]--ChmlFrpc
-echo.
 echo                 [2]--原版frpc
-echo.
 echo                 [3]--精简frpc
+echo                （下载时千万要开加速器）
+echo                （下载时千万千万别退出）
 echo             ————————————————————————
 echo                 [4]--frpc详情
 echo                 [5]--退出下载页
-echo                （下载地址在github要开加速器哟）
-echo                （下载时千万千万别退出）
+
 echo.
 choice /c 12345 /n /m "输入（1-5）数字="
 
@@ -110,27 +109,21 @@ echo 正在下载frpc
 powershell curl -o frpc.exe https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/ChmlFrpc.exe
 powershell curl -o frpc.ini https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/frpc.toml
 echo 下载完成
-echo 返回启动页中
-ping localhost -n 3 > nul
-goto begin
+goto ip15
 
  :ip10
 echo 正在下载frpc
 powershell curl -o frpc.exe https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/frpc.exe
 powershell curl -o frpc.toml https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/frpc.toml
 echo 下载完成
-echo 返回启动页中
-ping localhost -n 3 > nul
-goto begin
+goto ip15
 
  :ip11
 echo 正在下载frpc
 powershell curl -o frpc.exe https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/tiny.frpc.exe
 powershell curl -o frpc.toml https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/frpc.toml
 echo 下载完成
-echo 返回启动页中
-ping localhost -n 3 > nul
-goto begin
+goto ip15
 
  :ip12
 start https://github.com/Qianyiaz/ChmlFrpLauncher/releases/tag/1.0
@@ -155,3 +148,8 @@ IF EXIST frpc.exe (
     ping localhost -n 3 > nul
     goto start
 )
+ :ip15
+echo 返回启动页中
+ping localhost -n 2 > nul
+goto begin
+
