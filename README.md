@@ -1,4 +1,4 @@
-## ChmlFrpLauncher
+## ChmlFrpLauncher                <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/en_README.md">English</a>
 
 - [ ] 介绍
 
