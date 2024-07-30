@@ -9,13 +9,12 @@ This is a simple terminal .bat file developed for Windows systems, originally pa
 
 It serves as a tool to launch frpc, edit configuration files, and download different versions of frpc. Frp is a widely used, moderately performing open-source tool for intranet penetration, completely open-sourced on GitHub.
 
+[屏幕截图 2024-07-29 140826](https://github.com/user-attachments/assets/fa6cc0f7-bc7b-4441-9223-819b24005843)
+
+
+- [ ] Usage!
+
 [Click here to visit the source project](https://github.com/fatedier/frp).
-
-
-- [ ] Usage![屏幕截图 2024-07-29 140826](https://github.com/user-attachments/assets/fa6cc0f7-bc7b-4441-9223-819b24005843)
-
-
-
 Simply launch the application and input the digits '123456' to use it. Ensure frpc is downloaded beforehand.
 
 [Click here to view the official wiki](https://github.com/Qianyiaz/ChmlFrpLauncher/wiki).
