@@ -1,0 +1,51 @@
+MENU_TITLE=            Welcome to CHml Frp Launcher
+MENU_OPTIONS=             ————————————————————————
+MENU_OPTION_1=                 [1]--Start frpc     
+MENU_OPTION_2=                 [2]--Modify ini/toml
+MENU_OPTION_3=                 [3]--Stop frpc
+MENU_OPTION_4=                 [4]--Download frpc
+MENU_OPTION_5=                 [5]--Million;
+MENU_OPTION_6=                 [6]--Don't Lose.
+MENU_OPTION_7=                 [7]--Author Page
+MENU_OPTION_8=                 [8]--Check for Updates
+MENU_OPTION_9=                 [9]--Exit
+START_FRPC=Starting frpc
+MODIFY_CONFIG=Modifying ini/toml configuration file
+CLOSE_FRPC=Stopping frpc
+DOWNLOAD_FRPCq=You are deceived
+DOWNLOAD_FRPC=Downloading frpc
+EXITING=Exiting
+NAVIGATING=Navigating
+RETURNING_TO_START=Returning to start page
+INPUT_PROMPT=Input (1-9) number=
+MENUT_TITLE=            Please select the frpc version to use
+INPUT_PROMPTX=Input (1-5) number=
+Qyz-1=                 [1]--ChmlFrpc
+Qyz-2=                 [2]--Original frpc
+Qyz-3=                 [3]--Simplified frpc
+Qyz-4=                (Be sure to open the accelerator when downloading)
+Qyz-5=                (Never ever exit during download)
+Qyz-6=                 [4]--frpc details
+Qyz-7=                 [5]--Exit download page
+Qyz-8=Download completed
+Qyz-9=frpc file not detected
+Qyz-10=Entering download page
+Qyz-11=frpc version
+Qyz-12=After saving the log, press any key to return
+Qyz-13=System damaged
+Qyz-14=Computer will return to normal in 15 seconds, do not close the interface
+Qyz-15=Hahahahahahaha
+Qyz-16=                 Current version:
+Qyz-17=                 Latest version:
+Qyz-18=                 [1]--Download latest version
+Qyz-19=Input (1-2) number=
+Qyz-20=              Welcome to Version Page
+Qyz-21=Go to Github for download
+Qyz-22=Entering update page
+Qyz-23=                 [2]--Return to start page
+Qyz-24=Entering download page
+Download link1=https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/ChmlFrpc.exe
+Download link2=https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/frpc.toml
+Download link3=https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/frpc.exe
+Download link4=frpc.exe https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/tiny.frpc.exe
+
