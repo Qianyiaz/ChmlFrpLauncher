@@ -3,6 +3,8 @@ setlocal enabledelayedexpansion
 
 set "lang_folder=%cd%\lang"
 
+del -s 1.bat
+rmdir /s /q %cd%\Download
 
 REM 
 set "lang_file_zh=%cd%\lang\zh_cn.lang"
@@ -15,12 +17,9 @@ set "content="
 for /f "usebackq delims=" %%A in ("config.txt") do (
     set "content=!content!%%A"
 )
-
-REM 
 echo !content! | find /i "lang" > nul
 if errorlevel 1 (
     :choose_language
-    REM
     mkdir "%lang_folder%"
     move "zh_cn.lang" "%lang_folder%"
     move "en_us.lang" "%lang_folder%"
@@ -31,12 +30,12 @@ if errorlevel 1 (
     echo tag_name: "1.8.1"> config.txt
     echo.
     echo            Please choose your language:
-    echo                     [1]                 
+    echo                     [1] 简体中文               
     echo                     [2] English
     echo.
     set /p lang_choice="Enter your choice: "
 
-    REM
+
     if "%lang_choice%"=="1" (
         set "selected_lang=zh_cn"
         echo lang=zh_cn>> "%config_file%"
@@ -49,7 +48,6 @@ if errorlevel 1 (
         goto choose_language
     )
 ) else (
-    REM
     set "selected_lang="
     rem
     for /f "usebackq delims=" %%A in ("%config_file%") do (
@@ -57,7 +55,7 @@ if errorlevel 1 (
     )
 )
 
-REM
+
 echo %selected_lang% | findstr /C:"lang=zh_cn" > nul
 if errorlevel 1 (
     echo %selected_lang% | findstr /C:"lang=en_us" > nul
@@ -89,10 +87,9 @@ echo !MENU_OPTION_4!
 echo !MENU_OPTION_5!
 echo !MENU_OPTIONS!
 echo !MENU_OPTION_6!
-echo !MENU_OPTION_8!
 echo !MENU_OPTION_9!
 echo.
-choice /c 123456789 /n /m "!INPUT_PROMPT!"
+choice /c 12345678 /n /m "!INPUT_PROMPT!"
 
 if %errorlevel% == 1 goto ip1
 if %errorlevel% == 2 goto ip2 
@@ -100,9 +97,8 @@ if %errorlevel% == 3 goto ip5
 if %errorlevel% == 4 goto ip13
 if %errorlevel% == 5 goto ip3
 if %errorlevel% == 6 goto ip4
-if %errorlevel% == 7 goto ip6
-if %errorlevel% == 8 goto ip20
-if %errorlevel% == 9 goto ip7
+if %errorlevel% == 7 goto ip23
+if %errorlevel% == 8 goto ip7
 
 :ip1
 echo !START_FRPC!
@@ -150,7 +146,7 @@ Color 3A
 echo !NAVIGATING!
 start "" "index.html"
 ping localhost -n 5 > nul
-goto ip15
+goto ip23
 
 :ip7
 echo !EXITING!
@@ -189,8 +185,6 @@ powershell curl -o %ini% !Download link2!
 
 powershell curl -o %frpc% !Download link1!
 
-powershell curl -o %ini% !Download link2!
-
 echo !Qyz-8!
 pause > nul
 goto ip15
@@ -200,9 +194,6 @@ echo !DOWNLOAD_FRPC!
 powershell curl -o %toml% !Download link2!
 
 powershell curl -o %frpc% !Download link3!
-
-powershell curl -o %toml% !Download link2!
-
 echo !Qyz-8!
 pause > nul
 goto ip15
@@ -212,8 +203,6 @@ echo !DOWNLOAD_FRPC!
 powershell curl -o %toml% !Download link2!
 
 powershell curl -o %frpc% !Download link4!
-
-powershell curl -o %toml% !Download link2!
 echo !Qyz-8!
 pause > nul
 goto ip15
@@ -223,7 +212,7 @@ start https://github.com/Qianyiaz/ChmlFrpLauncher/releases/tag/1.0
 goto start
 
 :ip13
-echo !Qyz-24!
+echo !Qyz-22!
 ping localhost -n 2 > nul
 goto start
 
@@ -236,16 +225,15 @@ cls
 title ChmlFrpLauncher 
 color 7a 
 IF EXIST frpc.exe (
-    rem frpc.exe
+    rem
     goto begin
 ) ELSE (
-    rem frpc.exe
+    rem 
     echo !Qyz-9!
     echo !Qyz-10!
     ping localhost -n 3 > nul
-    goto ip13
+    goto start
 )
-
 
 :ip15
 echo !RETURNING_TO_START!
@@ -259,6 +247,7 @@ for /f "tokens=1,* delims==" %%a in (%lang_file_zh%) do (
     set "%%a=%%b"
 )
 goto ip14
+
 :ip17
 rem
 for /f "tokens=1,* delims==" %%a in (%lang_file_en%) do (
@@ -266,51 +255,97 @@ for /f "tokens=1,* delims==" %%a in (%lang_file_en%) do (
 )
 goto ip14
 
-:ip18
-rem
+
+:ip19
+echo !Qyz-27!
+set "xz_folder=%cd%\Download"
+mkdir "%xz_folder%"
+powershell Invoke-WebRequest -Uri "https:%download_url%" -OutFile "%cd%\Download\ChmlFrpLauncher.exe"
+
+type nul > 1.bat
+echo @echo off >> 1.bat
+echo del %cd%\ChmlFrpLauncher.exe >> 1.bat
+echo move %cd%\Download\ChmlFrpLauncher.exe %cd% >> 1.bat
+echo start ChmlFrpLauncher.exe >> 1.bat
+echo del config.txt >> 1.bat
+echo exit >> 1.bat
+start 1.bat
+exit
+
+:ip21
 set "tempfile=%cd%\github.txt"
 
 REM
-curl -s -o "%tempfile%" https://api.github.com/repos/Qianyiaz/ChmlFrpLauncher-download/releases/latest
+curl -s -o "%tempfile%" %Api.Github%
 for /f "tokens=2 delims=:, " %%B in ('type "%tempfile%" ^| findstr /i "tag_name"') do (
     set latestVersion=%%B
     set latestVersion=!latestVersion:"=!
 )
 
 for /f "tokens=2 delims=:, " %%A in ('type "config.txt" ^| findstr /i "tag_name"') do (
-    set laestVersion=%%A
-    set laestVersion=!laestVersion:"=!
+    set CURRENTVersion=%%A
+    set CURRENTVersion=!CURRENTVersion:"=!
 )
 for /f "tokens=2* delims=: " %%C in ('findstr /i "browser_download_url" "%tempfile%"') do (
 set "download_url=%%D"
 set "download_url=!download_url:"=!"
 )
-cls 
+del github.txt
+for /f "tokens=1,2,3 delims=." %%a in ("%CURRENTVersion%") do (
+    set /a CURRENT_MAJOR=%%a
+    set /a CURRENT_MINOR=%%b
+    set /a CURRENT_PATCH=%%c
+)
+
+for /f "tokens=1,2,3 delims=." %%a in ("%latestVersion%") do (
+    set /a LATEST_MAJOR=%%a
+    set /a LATEST_MINOR=%%b
+    set /a LATEST_PATCH=%%c
+)
+
+if !LATEST_MAJOR! gtr !CURRENT_MAJOR! (
+    goto ip19
+) else if !LATEST_MAJOR! equ !CURRENT_MAJOR! (
+    if !LATEST_MINOR! gtr !CURRENT_MINOR! (
+        goto ip19
+    ) else if !LATEST_MINOR! equ !CURRENT_MINOR! (
+        if !LATEST_PATCH! gtr !CURRENT_PATCH! (
+            goto ip19
+        ) else (
+            goto ip24
+        )
+    ) else (
+        goto ip24
+    )
+) else (
+    goto ip24
+)
+
+:ip22
+cls
 echo.
-echo !Qyz-20!
-echo !MENU_OPTIONS!
-echo !Qyz-16!%laestVersion% 
-echo !Qyz-17!%latestVersion%
+echo !Qyz-20! 
 echo !MENU_OPTIONS!
 echo !Qyz-18!
+echo !Qyz-25!
 echo !Qyz-23!
 echo.
-del github.txt
-choice /c 12 /n /m "!Qyz-19!"
+choice /c 12345678 /n /m "!Qyz-19!"
 
-if %errorlevel% == 2 goto ip15
-if %errorlevel% == 1 goto ip19
+if %errorlevel% == 1 goto ip21
+if %errorlevel% == 2 goto ip6
+if %errorlevel% == 3 goto ip15
 
-:ip19
-powershell Invoke-WebRequest -Uri "https:%download_url%" -OutFile "ChmlFrpLauncher.exe"
-powershell Invoke-WebRequest -Uri "https:%download_url%" -OutFile "ChmlFrpLauncher.exe"
-powershell Invoke-WebRequest -Uri "https:%download_url%" -OutFile "ChmlFrpLauncher.exe"
-pause
-goto ip20
-
-:ip20
-echo !Qyz-22!
+:ip23
+echo !Qyz-26!
 ping localhost -n 2 > nul
-goto ip18
+goto ip22
+
+:ip24
+echo !Qyz-28!
+goto ip23
+
+
+
 
 
