@@ -22,7 +22,7 @@
 
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/wiki">点击前往查看官方wiki</a>
 
-![屏幕截图 2024-07-29 140826](https://github.com/user-attachments/assets/2f10ea0d-aa34-4be8-9f47-f72229e52e97)
+![启动页](https://github.com/user-attachments/assets/b37bfbf4-d121-476f-8c78-e8c11e296a1a)
 
 
 
@@ -32,7 +32,7 @@
 
 新增了新的页面下载相关的frpc和他的配置文件，但在国内github一般下载不稳定，。
 
-![屏幕截图 2024-07-29 141202](https://github.com/user-attachments/assets/660c6c0b-21fa-4582-87ce-2b83c75b894d)
+![下载](https://github.com/user-attachments/assets/f3c07d43-93d0-454d-a1fa-ef14518b46c8)
 
 
 ## 相关链接
