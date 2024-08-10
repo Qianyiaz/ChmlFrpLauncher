@@ -1,10 +1,10 @@
 MENU_TITLE=            Welcome to CHml Frp Launcher
-MENU_OPTIONS=             ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+MENU_OPTIONS=             Â¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡ÂªÂ¡Âª
 MENU_OPTION_1=                 [1]--Start frpc     
 MENU_OPTION_2=                 [2]--Modify ini/toml
 MENU_OPTION_3=                 [3]--Close frpc
 MENU_OPTION_7=                 [3]--Download frpc
-MENU_OPTION_4=                 [4]--Be careful£»
+MENU_OPTION_4=                 [4]--Be carefulÂ£Â»
 MENU_OPTION_5=                 [5]--Don't input errors.
 MENU_OPTION_6=                 [6]--About
 MENU_OPTION_9=                 [7]--Exit
