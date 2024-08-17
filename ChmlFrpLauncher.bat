@@ -7,11 +7,14 @@ set "h_file=%cd%\CFL\html
 move "index.html" "%h_file%"
 move "indext.html" "%h_file%"
 rmdir /s /q %cd%\CFL\Download
-cls
-set "lang_file_zh=%cd%\CFL\lang\zh_cn.lang"
-set "lang_file_en=%cd%\CFL\lang\en_us.lang"
+set "lang_file_zh=%lang_folder%\zh_cn.lang"
+set "lang_file_en=%lang_folder%\en_us.lang"
 set "config=%cd%\CFL\config.txt"
+set "frpc=%cd%/CFL/frp/frpc.exe"
+set "ini=%cd%\CFL\frp\frpc.ini"
+set "toml=%cd%\CFL\frp\frpc.toml"
 
+cls
 
 set "content="
 for /f "usebackq delims=" %%A in ("%config%") do (
@@ -22,13 +25,14 @@ if errorlevel 1 (
     :choose_language
     mkdir "%lang_folder%"
     mkdir "%h_file%"
+    mkdir "%cd%\CFL\frp"
     move "zh_cn.lang" "%lang_folder%"
     move "en_us.lang" "%lang_folder%"
     cls
     title ChmlFrpLauncher 
     color 7a 
     type nul > %config%
-    echo tag_name: "1.8.1"> %config%
+    echo tag_name: "1.8.2"> %config%
     echo.
     echo            Please choose your language:
     echo                     [1] 简体中文               
@@ -50,7 +54,6 @@ if errorlevel 1 (
     )
 ) else (
     set "selected_lang="
-    rem
     for /f "usebackq delims=" %%A in ("%config%") do (
         set "selected_lang=!selected_lang!%%A"
     )
@@ -103,17 +106,30 @@ echo !START_FRPC!
 ping localhost -n 3 > nul
 cls 
 echo !Qyz-11!
-frpc -v 
-frpc -c ./frpc.toml 2>%cd%\CFL\log.txt
-frpc -c ./frpc.ini 2>%cd%\CFL\log.txt
+%frpc% -v 
+
+IF EXIST %toml% (
+    %frpc% -c %toml% 2>%cd%\CFL\log.txt
+)
+IF EXIST %ini% (
+    %frpc% -c %ini% 2>%cd%\CFL\log.txt
+)
+
 echo !Qyz-12!
 pause > nul
 goto ip15
 
 :ip2
 echo !MODIFY_CONFIG!
-start "" "frpc.toml."
-start "" "frpc.ini."
+
+IF EXIST %ini% (
+    start "" "%ini%" >nul 2>&1
+)
+
+IF EXIST %toml% (
+    start "" "%toml%" >nul 2>&1
+)
+
 goto ip15
 
 :ip3
@@ -159,15 +175,11 @@ echo !MENU_OPTIONS!
 echo !Qyz-1!
 echo !Qyz-2!
 echo !Qyz-3!
-echo=!Qyz-4!
-echo=!Qyz-5!
 echo !MENU_OPTIONS!
 echo !Qyz-6!
 echo !Qyz-7!
 echo.
-set "frpc=%cd%\frpc.exe"
-set "ini=%cd%\frpc.ini"
-set "toml=%cd%\frpc.toml"
+
 
 choice /c 12345 /n /m "!INPUT_PROMPTX!"
 
@@ -179,48 +191,40 @@ if %errorlevel% == 5 goto ip15
 
 :ip9
 echo !DOWNLOAD_FRPC! 
-powershell curl -o %ini% !Download link2!
+
 powershell curl -o %frpc% !Download link1!
-if %errorlevel% neq 0 (
-    echo !Qyz-29!
-    goto ip13
-) else (
-    echo !Qyz-8!
+
+IF EXIST %ini% (
+    goto ip25
+) ELSE (
+    powershell curl -o %ini% !Download link2!
+    goto ip25
 )
 
-echo !Qyz-8!
-pause > nul
-goto ip15
+
 
 :ip10
 echo !DOWNLOAD_FRPC! 
-powershell curl -o %toml% !Download link2!
 powershell curl -o %frpc% !Download link3!
-if %errorlevel% neq 0 (
-    echo !Qyz-29!
-    goto ip13
-) else (
-    echo !Qyz-8!
+
+IF EXIST %toml% (
+    goto ip25
+) ELSE (
+    powershell curl -o %toml% !Download link2!
+    goto ip25
 )
 
-echo !Qyz-8!
-pause > nul
-goto ip15
 
 :ip11
 echo !DOWNLOAD_FRPC! 
-powershell curl -o %toml% !Download link2!
 powershell curl -o %frpc% !Download link4!
-if %errorlevel% neq 0 (
-    echo !Qyz-29!
-    goto ip13
-) else (
-    echo !Qyz-8!
-)
 
-echo !Qyz-8!
-pause > nul
-goto ip15
+IF EXIST %toml% (
+    goto ip25
+) ELSE (
+    powershell curl -o %toml% !Download link2!
+    goto ip25
+)
 
 :ip12
 start https://github.com/Qianyiaz/ChmlFrpLauncher/releases/tag/1.0
@@ -233,12 +237,12 @@ goto start
 
 :ip14
 @echo off
-del /f zh_cn.lang
-del /f en_us.lang
+del /f zh_cn.lang >nul 2>&1
+del /f en_us.lang >nul 2>&1
 cls
 title ChmlFrpLauncher 
 color 7a 
-IF EXIST frpc.exe (
+IF EXIST %frpc% (
     goto begin
 ) ELSE (
     echo !Qyz-9!
@@ -316,6 +320,10 @@ set "download_url=!download_url:"=!"
 
 del %tempfile%
 
+echo !Qyz-30!!latestVersion!
+echo !Qyz-31!!CURRENTVersion!
+ping localhost -n 3 > nul
+
 for /f "tokens=1,2,3 delims=." %%a in ("%CURRENTVersion%") do (
     set /a CURRENT_MAJOR=%%a
     set /a CURRENT_MINOR=%%b
@@ -354,8 +362,10 @@ echo !MENU_OPTIONS!
 echo !Qyz-18!
 echo !Qyz-25!
 echo !MENU_OPTION_7!
+echo !MENU_OPTIONS!
 echo !Qyz-23!
 echo.
+
 choice /c 1234 /n /m "!Qyz-19!"
 
 if %errorlevel% == 1 goto ip21
@@ -372,3 +382,13 @@ goto ip22
 echo !Qyz-28!
 goto ip23
 
+:ip25
+if %errorlevel% neq 0 (
+    echo !Qyz-29!
+    goto ip13
+) else (
+    echo !Qyz-8!
+)
+echo !Qyz-8!
+pause > nul
+goto ip15
