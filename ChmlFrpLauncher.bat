@@ -11,6 +11,7 @@ set "ini=%cd%\CFL\frp\frpc.ini"
 set "toml=%cd%\CFL\frp\frpc.toml"
 set "xz_folder=%cd%\CFL\Download"
 set "dz=%cd%\CFL\Download\ChmlFrpLauncher.exe"
+set "tempfile=%cd%\CFL\github.txt"
 
 rmdir /s /q %cd%\CFL\Download >nul 2>&1
 del 1.bat >nul 2>&1
@@ -36,7 +37,7 @@ if errorlevel 1 (
     echo tag_name: "1.8.3"> %config%
     echo.
     echo            Please choose your language:
-    echo                     [1] 简体中文               
+    echo                     [1] 简体中文              
     echo                     [2] English
     echo.
     set /p lang_choice="Enter your choice: "
@@ -299,8 +300,8 @@ exit
 
 :ip21
 
-set "tempfile=%cd%\CFL\github.txt"
 curl -s -o "%tempfile%" %Api.Github%
+
 for /f "tokens=2 delims=:, " %%B in ('type "%tempfile%" ^| findstr /i "tag_name"') do (
     set latestVersion=%%B
     set latestVersion=!latestVersion:"=!
@@ -313,6 +314,7 @@ for /f "tokens=2* delims=: " %%C in ('findstr /i "browser_download_url" "%tempfi
 set "download_url=%%D"
 set "download_url=!download_url:"=!"
 )
+
 del %tempfile%
 
 echo !Qyz-30!!latestVersion!
