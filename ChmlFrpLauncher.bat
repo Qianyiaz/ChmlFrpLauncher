@@ -36,7 +36,7 @@ if errorlevel 1 (
     echo tag_name: "1.8.2"> %config%
     echo.
     echo            Please choose your language:
-    echo                     [1] ç®€ä½“ä¸­æ–‡               
+    echo                     [1] ¼òÌåÖÐÎÄ               
     echo                     [2] English
     echo.
     set /p lang_choice="Enter your choice: "
