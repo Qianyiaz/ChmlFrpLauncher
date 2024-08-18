@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 set "lang_folder=%cd%\CFL\lang"
-set "h_file=%cd%\CFL\html
+set "h_file=%cd%\CFL\html"
 set "lang_file_zh=%lang_folder%\zh_cn.lang"
 set "lang_file_en=%lang_folder%\en_us.lang"
 set "config=%cd%\CFL\config.txt"
