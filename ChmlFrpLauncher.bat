@@ -33,7 +33,7 @@ if errorlevel 1 (
     title ChmlFrpLauncher 
     color 7a 
     type nul > %config%
-    echo tag_name: "1.8.2"> %config%
+    echo tag_name: "1.8.3"> %config%
     echo.
     echo            Please choose your language:
     echo                     [1] ¼òÌåÖÐÎÄ               
