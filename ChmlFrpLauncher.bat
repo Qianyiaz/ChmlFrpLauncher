@@ -2,17 +2,18 @@
 setlocal enabledelayedexpansion
 
 set "lang_folder=%cd%\CFL\lang"
-del 1.bat >nul 2>&1
 set "h_file=%cd%\CFL\html
-move "index.html" "%h_file%"
-move "indext.html" "%h_file%"
-rmdir /s /q %cd%\CFL\Download
 set "lang_file_zh=%lang_folder%\zh_cn.lang"
 set "lang_file_en=%lang_folder%\en_us.lang"
 set "config=%cd%\CFL\config.txt"
 set "frpc=%cd%/CFL/frp/frpc.exe"
 set "ini=%cd%\CFL\frp\frpc.ini"
 set "toml=%cd%\CFL\frp\frpc.toml"
+set "xz_folder=%cd%\CFL\Download"
+set "dz=%cd%\CFL\Download\ChmlFrpLauncher.exe"
+
+rmdir /s /q %cd%\CFL\Download >nul 2>&1
+del 1.bat >nul 2>&1
 
 cls
 
@@ -236,10 +237,10 @@ ping localhost -n 2 > nul
 goto start
 
 :ip14
-@echo off
+move "index.html" "%h_file%" >nul 2>&1
+move "indext.html" "%h_file%" >nul 2>&1
 del /f zh_cn.lang >nul 2>&1
 del /f en_us.lang >nul 2>&1
-cls
 title ChmlFrpLauncher 
 color 7a 
 IF EXIST %frpc% (
@@ -271,17 +272,15 @@ goto ip14
 
 :ip19
 echo !Qyz-27!
-set "xz_folder=%cd%\CFL\Download"
-set "dz=%cd%\CFL\Download\ChmlFrpLauncher.exe"
 mkdir "%xz_folder%"
+goto ip26
 
-powershell Invoke-WebRequest -Uri "https:%download_url%" -OutFile "%dz%"
-powershell Invoke-WebRequest -Uri "https:%download_url%" -OutFile "%dz%"
+:ip26
 powershell Invoke-WebRequest -Uri "https:%download_url%" -OutFile "%dz%"
 
 if %errorlevel% neq 0 (
     echo !Qyz-29!
-    goto ip23
+    goto ip26
 ) else (
     echo !Qyz-8!
 )
@@ -289,35 +288,31 @@ pause
 
 type nul > 1.bat
 echo @echo off >> 1.bat
-echo del %cd%\ChmlFrpLauncher.exe >> 1.bat
-echo move %dz% %cd% >> 1.bat
+echo del /f %cd%\ChmlFrpLauncher.exe >> 1.bat
+echo del %cd%\CFL\config.txt >> 1.bat
+echo move %cd%\CFL\Download\ChmlFrpLauncher.exe %cd% >> 1.bat
 echo start ChmlFrpLauncher.exe >> 1.bat
-echo del %config% >> 1.bat
 echo exit >> 1.bat
 start 1.bat
+
 exit
 
 :ip21
+
 set "tempfile=%cd%\CFL\github.txt"
-
 curl -s -o "%tempfile%" %Api.Github%
-
 for /f "tokens=2 delims=:, " %%B in ('type "%tempfile%" ^| findstr /i "tag_name"') do (
     set latestVersion=%%B
     set latestVersion=!latestVersion:"=!
 )
-
 for /f "tokens=2 delims=:, " %%A in ('type "%config%" ^| findstr /i "tag_name"') do (
     set CURRENTVersion=%%A
     set CURRENTVersion=!CURRENTVersion:"=!
 )
-
 for /f "tokens=2* delims=: " %%C in ('findstr /i "browser_download_url" "%tempfile%"') do (
 set "download_url=%%D"
 set "download_url=!download_url:"=!"
 )
-
-
 del %tempfile%
 
 echo !Qyz-30!!latestVersion!
