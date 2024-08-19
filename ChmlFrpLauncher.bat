@@ -1,19 +1,20 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "lang_folder=%cd%\CFL\lang"
-set "h_file=%cd%\CFL\html"
+set "CF=%cd%\CFL"
+set "lang_folder=%CF%\lang"
+set "h_file=%CF%\html"
 set "lang_file_zh=%lang_folder%\zh_cn.lang"
 set "lang_file_en=%lang_folder%\en_us.lang"
-set "config=%cd%\CFL\config.txt"
-set "frpc=%cd%/CFL/frp/frpc.exe"
-set "ini=%cd%\CFL\frp\frpc.ini"
-set "toml=%cd%\CFL\frp\frpc.toml"
-set "xz_folder=%cd%\CFL\Download"
-set "dz=%cd%\CFL\Download\ChmlFrpLauncher.exe"
+set "config=%CF%\config.txt"
+set "frpc=%CF%/frp/frpc.exe"
+set "ini=%CF%\frp\frpc.ini"
+set "toml=%CF%\frp\frpc.toml"
+set "xz_folder=%CF%\Download"
+set "dz=%xz_folder%\ChmlFrpLauncher.exe"
 set "tempfile=%cd%\CFL\github.txt"
 
-rmdir /s /q %cd%\CFL\Download >nul 2>&1
+rmdir /s /q %xz_folder% >nul 2>&1
 del 1.bat >nul 2>&1
 
 cls
@@ -37,7 +38,7 @@ if errorlevel 1 (
     echo tag_name: "1.8.3"> %config%
     echo.
     echo            Please choose your language:
-    echo                     [1] ¼òÌåÖÐÎÄ              
+    echo                     [1] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½              
     echo                     [2] English
     echo.
     set /p lang_choice="Enter your choice: "
@@ -61,7 +62,6 @@ if errorlevel 1 (
     )
 )
 
-
 echo %selected_lang% | findstr /C:"lang=zh_cn" > nul
 if errorlevel 1 (
     echo %selected_lang% | findstr /C:"lang=en_us" > nul
@@ -75,6 +75,20 @@ if errorlevel 1 (
 ) else (
     goto ip16
 )
+:ip16
+for /f "tokens=1,* delims==" %%a in (%lang_file_zh%) do (
+    set "%%a=%%b"
+)
+goto ip14
+
+:ip17
+for /f "tokens=1,* delims==" %%a in (%lang_file_en%) do (
+    set "%%a=%%b"
+)
+goto ip14
+
+
+
 
 :begin
 title ChmlFrpLauncher 
@@ -169,6 +183,9 @@ echo !EXITING!
 ping localhost -n 3 > nul
 exit 
 
+
+
+
 :start 
 cls 
 echo.
@@ -258,17 +275,6 @@ echo !RETURNING_TO_START!
 ping localhost -n 2 > nul
 goto begin
 
-:ip16
-for /f "tokens=1,* delims==" %%a in (%lang_file_zh%) do (
-    set "%%a=%%b"
-)
-goto ip14
-
-:ip17
-for /f "tokens=1,* delims==" %%a in (%lang_file_en%) do (
-    set "%%a=%%b"
-)
-goto ip14
 
 
 :ip19
