@@ -4,8 +4,6 @@ setlocal enabledelayedexpansion
 set "CF=%cd%\CFL"
 set "lang_folder=%CF%\lang"
 set "h_file=%CF%\html"
-set "lang_file_zh=%lang_folder%\zh_cn.lang"
-set "lang_file_en=%lang_folder%\en_us.lang"
 set "config=%CF%\config.txt"
 set "frpc=%CF%/frp/frpc.exe"
 set "ini=%CF%\frp\frpc.ini"
@@ -17,7 +15,6 @@ set "tempfile=%cd%\CFL\github.txt"
 rmdir /s /q %xz_folder% >nul 2>&1
 del 1.bat >nul 2>&1
 
-cls
 
 set "content="
 for /f "usebackq delims=" %%A in ("%config%") do (
@@ -38,7 +35,11 @@ if errorlevel 1 (
     echo tag_name: "1.8.3"> %config%
     echo.
     echo            Please choose your language:
+<<<<<<< HEAD
+    echo                     [1] 简体中文              
+=======
     echo                     [1] 简体中文             
+>>>>>>> 97291d104e5019852eda4bbc7218b11b7e5bcd67
     echo                     [2] English
     echo.
     set /p lang_choice="Enter your choice: "
@@ -62,27 +63,12 @@ if errorlevel 1 (
     )
 )
 
-echo %selected_lang% | findstr /C:"lang=zh_cn" > nul
-if errorlevel 1 (
-    echo %selected_lang% | findstr /C:"lang=en_us" > nul
-    if errorlevel 1 (
-        echo Language not recognized.
-        pause
-        exit /b 1
-    ) else (
-        goto ip17
+for /f "tokens=1,2 delims==" %%a in (%config%) do (
+    if "%%a"=="lang" (
+        set langs=%%b
     )
-) else (
-    goto ip16
 )
-:ip16
-for /f "tokens=1,* delims==" %%a in (%lang_file_zh%) do (
-    set "%%a=%%b"
-)
-goto ip14
-
-:ip17
-for /f "tokens=1,* delims==" %%a in (%lang_file_en%) do (
+for /f "tokens=1,* delims==" %%a in (%lang_folder%\%langs%.lang) do (
     set "%%a=%%b"
 )
 goto ip14
@@ -126,6 +112,7 @@ echo !Qyz-11!
 
 IF EXIST %toml% (
     %frpc% -c %toml% 2>%cd%\CFL\log.txt
+    
 )
 IF EXIST %ini% (
     %frpc% -c %ini% 2>%cd%\CFL\log.txt
