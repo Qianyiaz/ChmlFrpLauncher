@@ -42,4 +42,4 @@
 ## 相关链接
       
 <a href="https://space.bilibili.com/1582404131">点击前往billbill</a>
-<a href="https://h5.qun.qq.com/h5/jump-page/index.html?sid=2&isQim=false&src_type=internal&version=1&uin=454374900&card_type=group&source=qrcode&jump_from=&auth=&authSig=80wGbqYsqXfk1OAHI8illvoGNIDg3Y73UavCoivnLNbTCG5tdfMfrBOZWk9I/edB&source_id=2_40001">点击前往QQ群</a>
+<a href="https://qm.qq.com/q/thFfQ0fFm2">点击前往QQ群</a>
