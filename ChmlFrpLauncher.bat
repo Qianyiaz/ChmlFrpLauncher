@@ -15,7 +15,6 @@ set "tempfile=%cd%\CFL\github.txt"
 rmdir /s /q %xz_folder% >nul 2>&1
 del 1.bat >nul 2>&1
 
-
 set "content="
 for /f "usebackq delims=" %%A in ("%config%") do (
     set "content=!content!%%A"
@@ -68,6 +67,20 @@ for /f "tokens=1,* delims==" %%a in (%lang_folder%\%langs%.lang) do (
     set "%%a=%%b"
 )
 goto ip14
+
+:ip14
+move "index.html" "%h_file%" >nul 2>&1
+move "indext.html" "%h_file%" >nul 2>&1
+del /f zh_cn.lang >nul 2>&1
+del /f en_us.lang >nul 2>&1
+IF EXIST %frpc% (
+    goto begin
+) ELSE (
+    echo !Qyz-9!
+    echo !Qyz-10!
+    ping localhost -n 3 > nul
+    goto start
+)
 
 
 
@@ -203,8 +216,6 @@ IF EXIST %ini% (
     goto ip25
 )
 
-
-
 :ip10
 echo !DOWNLOAD_FRPC! 
 powershell curl -o %frpc% !Download link3!
@@ -237,28 +248,11 @@ echo !Qyz-22!
 ping localhost -n 2 > nul
 goto start
 
-:ip14
-move "index.html" "%h_file%" >nul 2>&1
-move "indext.html" "%h_file%" >nul 2>&1
-del /f zh_cn.lang >nul 2>&1
-del /f en_us.lang >nul 2>&1
-title ChmlFrpLauncher 
-color 7a 
-IF EXIST %frpc% (
-    goto begin
-) ELSE (
-    echo !Qyz-9!
-    echo !Qyz-10!
-    ping localhost -n 3 > nul
-    goto start
-)
 
 :ip15
 echo !RETURNING_TO_START!
 ping localhost -n 2 > nul
 goto begin
-
-
 
 :ip19
 echo !Qyz-27!
