@@ -34,7 +34,8 @@
 
 例如： 语言文件：zh_cn.lang       配置文件：lang=zh_cn
 
-新增了新的页面下载相关的frpc和他的配置文件，国内下载使用Gitee镜像下载源不必担心下载问题，但是在更新时仍然使用Github检测更新下载，目前没找到国内替代品。
+新增了新的页面下载相关的frpc和他的配置文件，国内下载使用Gitee镜像下载源不必
+担心下载问题，但是在更新时仍然使用Github检测更新下载，目前没找到国内替代品。
 
 ![下载](https://github.com/user-attachments/assets/f3c07d43-93d0-454d-a1fa-ef14518b46c8)
 
