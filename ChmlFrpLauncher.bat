@@ -33,10 +33,10 @@ if errorlevel 1 (
     title ChmlFrpLauncher 
     color 7a 
     type nul > %config%
-    echo tag_name: "1.8.2"> %config%
+    echo tag_name: "1.8.3"> %config%
     echo.
     echo            Please choose your language:
-    echo                     [1] 简体中文               
+    echo                     [1] 简体中文            
     echo                     [2] English
     echo.
     set /p lang_choice="Enter your choice: "
