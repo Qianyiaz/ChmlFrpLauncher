@@ -18,7 +18,7 @@ Simply start the application and enter the number 123456 to use it, but you need
 
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/wiki">Click here to view the official wiki</a>
 
-![Launch Page](https://github.com/user-attachments/assets/b37bfbf4-d121-476f-8c78-e8c11e296a1a)
+![启动英语](https://github.com/user-attachments/assets/73963fe4-b6cd-49f6-b3af-21a1135f6665)
 
 ## Related Features
       
@@ -29,7 +29,7 @@ For example: Language file: `zh_cn.lang`       Configuration file: `lang=zh_cn`
 
 A new page has been added to download relevant frpc and its configuration files. For users in China, you can use the Gitee mirror for downloads without worrying about download issues. However, when updating, it still uses GitHub to check for updates and downloads, as no domestic alternatives have been found yet.
 
-![Download](https://github.com/user-attachments/assets/f3c07d43-93d0-454d-a1fa-ef14518b46c8)
+![下载英语](https://github.com/user-attachments/assets/0d4acb30-7cc1-411a-8dc9-039d1e6cb2d4)
 
 ## Related Links
       
