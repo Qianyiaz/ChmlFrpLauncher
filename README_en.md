@@ -1,37 +1,37 @@
 ## ChmlFrpLauncher                
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/README.md">中文</a>
-
 ## Introduction
 
-This is a simple terminal batch file developed for the Windows system.
-
-Originally, it was a batch processing file, but it has been packaged into an executable file using Bat_To_Exe_Converter.
+This is a simple terminal batch file developed for the Windows operating system, originally a batch processing file but packaged into an exe file using Bat_To_Exe_Converter.
 
 ## Features
       
-It is a tool that can start frpc, edit configuration files, download different versions of frpc, and perform updates.
+It is a tool that can launch frpc, edit configuration files, download different versions of frpc, and perform updates. 
 
-frp is a widely used application with moderate performance for internal network penetration, and it is completely open-source on GitHub.
+frp is a widely used network penetration tool with average performance, and it is fully open-source on GitHub.
 
-<a href="https://github.com/fatedier/frp">Click here to visit the source project</a>
+<a href="https://github.com/fatedier/frp">Click here to go to the source project</a>
 
-## Usage
+## How to Use
       
-Simply start the program and enter the number 123456 to use it, but you must download frpc beforehand.
+Simply start the application and enter the number 123456 to use it, but you need to download frpc beforehand.
 
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/wiki">Click here to view the official wiki</a>
 
-![启动英语](https://github.com/user-attachments/assets/73963fe4-b6cd-49f6-b3af-21a1135f6665)
+![Launch Page](https://github.com/user-attachments/assets/b37bfbf4-d121-476f-8c78-e8c11e296a1a)
 
 ## Related Features
       
-In version 1.8.0, ChmlFrpLauncher not only starts ChmlFrpc but also the original frp.
+In version 1.8.0, ChmlFrpLauncher not only launches ChmlFrpc but also supports the original frp. 
 
-New pages have been added to download relevant frpc versions and their configuration files, although downloading from GitHub is generally unstable within China.
+In version 1.8.3, ChmlFrpLauncher supports all languages, but you need to translate yourself by modifying the prefix in the config file.
+For example: Language file: `zh_cn.lang`       Configuration file: `lang=zh_cn`
 
-![下载英语](https://github.com/user-attachments/assets/0d4acb30-7cc1-411a-8dc9-039d1e6cb2d4)
+A new page has been added to download relevant frpc and its configuration files. For users in China, you can use the Gitee mirror for downloads without worrying about download issues. However, when updating, it still uses GitHub to check for updates and downloads, as no domestic alternatives have been found yet.
+
+![Download](https://github.com/user-attachments/assets/f3c07d43-93d0-454d-a1fa-ef14518b46c8)
 
 ## Related Links
       
-<a href="https://space.bilibili.com/1582404131">Click here to visit my Bilibili page</a>
-
+<a href="https://space.bilibili.com/1582404131">Click here to visit Bilibili</a>
+<a href="https://qm.qq.com/q/thFfQ0fFm2">Click here to join the QQ group</a>
