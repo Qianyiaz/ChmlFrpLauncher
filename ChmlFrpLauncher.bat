@@ -180,7 +180,6 @@ echo !Qyz-11!
 
 IF EXIST %toml% (
     %frpc% -c %toml% 2>%cd%\CFL\log.txt
-    
 )
 IF EXIST %ini% (
     %frpc% -c %ini% 2>%cd%\CFL\log.txt
