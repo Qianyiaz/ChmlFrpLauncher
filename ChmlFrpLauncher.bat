@@ -94,7 +94,6 @@ set "download_url=!download_url:"=!"
 
 del %tempfile%
 
-
 for /f "tokens=1,2,3 delims=." %%a in ("%CURRENTVersion%") do (
     set /a CURRENT_MAJOR=%%a
     set /a CURRENT_MINOR=%%b
