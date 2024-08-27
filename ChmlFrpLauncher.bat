@@ -1,21 +1,20 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "lang_folder=%cd%\CFL\lang"
-set "h_file=%cd%\CFL\html"
-set "lang_file_zh=%lang_folder%\zh_cn.lang"
-set "lang_file_en=%lang_folder%\en_us.lang"
-set "config=%cd%\CFL\config.txt"
-set "frpc=%cd%/CFL/frp/frpc.exe"
-set "ini=%cd%\CFL\frp\frpc.ini"
-set "toml=%cd%\CFL\frp\frpc.toml"
-set "xz_folder=%cd%\CFL\Download"
-set "dz=%cd%\CFL\Download\ChmlFrpLauncher.exe"
+set "X=0"
+set "CF=%cd%\CFL"
+set "lang_folder=%CF%\lang"
+set "h_file=%CF%\html"
+set "config=%CF%\config.txt"
+set "frpc=%CF%\frp\frpc.exe"
+set "ini=%CF%\frp\frpc.ini"
+set "toml=%CF%\frp\frpc.toml"
+set "xz_folder=%CF%\Download"
+set "dz=%xz_folder%\ChmlFrpLauncher.exe"
+set "tempfile=%CF%\github.txt"
 
-rmdir /s /q %cd%\CFL\Download >nul 2>&1
+rmdir /s /q %xz_folder% >nul 2>&1
 del 1.bat >nul 2>&1
-
-cls
 
 set "content="
 for /f "usebackq delims=" %%A in ("%config%") do (
@@ -33,10 +32,10 @@ if errorlevel 1 (
     title ChmlFrpLauncher 
     color 7a 
     type nul > %config%
-    echo tag_name: "1.8.2"> %config%
+    echo tag_name: "1.8.3"> %config%
     echo.
     echo            Please choose your language:
-    echo                     [1] 简体中文            
+    echo                     [1] Chinese-s           
     echo                     [2] English
     echo.
     set /p lang_choice="Enter your choice: "
@@ -59,21 +58,91 @@ if errorlevel 1 (
         set "selected_lang=!selected_lang!%%A"
     )
 )
+color 7a 
+for /f "tokens=1,2 delims==" %%a in (%config%) do (
+    if "%%a"=="lang" (
+        set langs=%%b
+    )
+)
+for /f "tokens=1,* delims==" %%a in (%lang_folder%\%langs%.lang) do (
+    set "%%a=%%b"
+)
+goto ip14
 
+:ip14
+move "index.html" "%h_file%" >nul 2>&1
+move "indext.html" "%h_file%" >nul 2>&1
+del /f zh_cn.lang >nul 2>&1
+del /f en_us.lang >nul 2>&1
+goto ip17
 
-echo %selected_lang% | findstr /C:"lang=zh_cn" > nul
-if errorlevel 1 (
-    echo %selected_lang% | findstr /C:"lang=en_us" > nul
-    if errorlevel 1 (
-        echo Language not recognized.
-        pause
-        exit /b 1
+:ip17
+curl -s -o "%tempfile%" %Api.Github%
+
+for /f "tokens=2 delims=:, " %%B in ('type "%tempfile%" ^| findstr /i "tag_name"') do (
+    set latestVersion=%%B
+    set latestVersion=!latestVersion:"=!
+)
+for /f "tokens=2 delims=:, " %%A in ('type "%config%" ^| findstr /i "tag_name"') do (
+    set CURRENTVersion=%%A
+    set CURRENTVersion=!CURRENTVersion:"=!
+)
+for /f "tokens=2* delims=: " %%C in ('findstr /i "browser_download_url" "%tempfile%"') do (
+set "download_url=%%D"
+set "download_url=!download_url:"=!"
+)
+
+del %tempfile%
+
+for /f "tokens=1,2,3 delims=." %%a in ("%CURRENTVersion%") do (
+    set /a CURRENT_MAJOR=%%a
+    set /a CURRENT_MINOR=%%b
+    set /a CURRENT_PATCH=%%c
+)
+
+for /f "tokens=1,2,3 delims=." %%a in ("%latestVersion%") do (
+    set /a LATEST_MAJOR=%%a
+    set /a LATEST_MINOR=%%b
+    set /a LATEST_PATCH=%%c
+)
+
+if %X% == 1 (
+    goto ip20
+) else (
+    goto ip18
+)
+
+:ip18
+if !LATEST_MAJOR! gtr !CURRENT_MAJOR! (
+    goto ip19
+) else if !LATEST_MAJOR! equ !CURRENT_MAJOR! (
+    if !LATEST_MINOR! gtr !CURRENT_MINOR! (
+        goto ip19
+    ) else if !LATEST_MINOR! equ !CURRENT_MINOR! (
+        if !LATEST_PATCH! gtr !CURRENT_PATCH! (
+            goto ip19
+        ) else (
+            goto ip27
+        )
     ) else (
-        goto ip17
+        goto ip27
     )
 ) else (
-    goto ip16
+    goto ip27
 )
+
+:ip27
+IF EXIST %frpc% (
+    goto begin
+) ELSE (
+    echo !Qyz-9!
+    echo !Qyz-10!
+    ping localhost -n 3 > nul
+    goto start
+)
+
+
+
 
 :begin
 title ChmlFrpLauncher 
@@ -168,6 +237,9 @@ echo !EXITING!
 ping localhost -n 3 > nul
 exit 
 
+
+
+
 :start 
 cls 
 echo.
@@ -202,8 +274,6 @@ IF EXIST %ini% (
     goto ip25
 )
 
-
-
 :ip10
 echo !DOWNLOAD_FRPC! 
 powershell curl -o %frpc% !Download link3!
@@ -214,7 +284,6 @@ IF EXIST %toml% (
     powershell curl -o %toml% !Download link2!
     goto ip25
 )
-
 
 :ip11
 echo !DOWNLOAD_FRPC! 
@@ -236,21 +305,7 @@ echo !Qyz-22!
 ping localhost -n 2 > nul
 goto start
 
-:ip14
-move "index.html" "%h_file%" >nul 2>&1
-move "indext.html" "%h_file%" >nul 2>&1
-del /f zh_cn.lang >nul 2>&1
-del /f en_us.lang >nul 2>&1
-title ChmlFrpLauncher 
-color 7a 
-IF EXIST %frpc% (
-    goto begin
-) ELSE (
-    echo !Qyz-9!
-    echo !Qyz-10!
-    ping localhost -n 3 > nul
-    goto start
-)
+
 
 :ip15
 echo !RETURNING_TO_START!
@@ -258,17 +313,31 @@ ping localhost -n 2 > nul
 goto begin
 
 :ip16
-for /f "tokens=1,* delims==" %%a in (%lang_file_zh%) do (
-    set "%%a=%%b"
-)
-goto ip14
+set "X=1"
+goto ip17
 
-:ip17
-for /f "tokens=1,* delims==" %%a in (%lang_file_en%) do (
-    set "%%a=%%b"
-)
-goto ip14
+:ip20
+echo !Qyz-30!!latestVersion!
+echo !Qyz-31!!CURRENTVersion!
+ping localhost -n 3 > nul
 
+if !LATEST_MAJOR! gtr !CURRENT_MAJOR! (
+    goto ip19
+) else if !LATEST_MAJOR! equ !CURRENT_MAJOR! (
+    if !LATEST_MINOR! gtr !CURRENT_MINOR! (
+        goto ip19
+    ) else if !LATEST_MINOR! equ !CURRENT_MINOR! (
+        if !LATEST_PATCH! gtr !CURRENT_PATCH! (
+            goto ip19
+        ) else (
+            goto ip24
+        )
+    ) else (
+        goto ip24
+    )
+) else (
+    goto ip24
+)
 
 :ip19
 echo !Qyz-27!
@@ -297,58 +366,6 @@ start 1.bat
 
 exit
 
-:ip21
-
-set "tempfile=%cd%\CFL\github.txt"
-curl -s -o "%tempfile%" %Api.Github%
-for /f "tokens=2 delims=:, " %%B in ('type "%tempfile%" ^| findstr /i "tag_name"') do (
-    set latestVersion=%%B
-    set latestVersion=!latestVersion:"=!
-)
-for /f "tokens=2 delims=:, " %%A in ('type "%config%" ^| findstr /i "tag_name"') do (
-    set CURRENTVersion=%%A
-    set CURRENTVersion=!CURRENTVersion:"=!
-)
-for /f "tokens=2* delims=: " %%C in ('findstr /i "browser_download_url" "%tempfile%"') do (
-set "download_url=%%D"
-set "download_url=!download_url:"=!"
-)
-del %tempfile%
-
-echo !Qyz-30!!latestVersion!
-echo !Qyz-31!!CURRENTVersion!
-ping localhost -n 3 > nul
-
-for /f "tokens=1,2,3 delims=." %%a in ("%CURRENTVersion%") do (
-    set /a CURRENT_MAJOR=%%a
-    set /a CURRENT_MINOR=%%b
-    set /a CURRENT_PATCH=%%c
-)
-
-for /f "tokens=1,2,3 delims=." %%a in ("%latestVersion%") do (
-    set /a LATEST_MAJOR=%%a
-    set /a LATEST_MINOR=%%b
-    set /a LATEST_PATCH=%%c
-)
-
-if !LATEST_MAJOR! gtr !CURRENT_MAJOR! (
-    goto ip19
-) else if !LATEST_MAJOR! equ !CURRENT_MAJOR! (
-    if !LATEST_MINOR! gtr !CURRENT_MINOR! (
-        goto ip19
-    ) else if !LATEST_MINOR! equ !CURRENT_MINOR! (
-        if !LATEST_PATCH! gtr !CURRENT_PATCH! (
-            goto ip19
-        ) else (
-            goto ip24
-        )
-    ) else (
-        goto ip24
-    )
-) else (
-    goto ip24
-)
-
 :ip22
 cls
 echo.
@@ -363,7 +380,7 @@ echo.
 
 choice /c 1234 /n /m "!Qyz-19!"
 
-if %errorlevel% == 1 goto ip21
+if %errorlevel% == 1 goto ip16
 if %errorlevel% == 2 goto ip6
 if %errorlevel% == 3 goto ip13
 if %errorlevel% == 4 goto ip15
