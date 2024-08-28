@@ -374,6 +374,7 @@ echo !MENU_OPTIONS!
 echo !Qyz-18!
 echo !Qyz-25!
 echo !MENU_OPTION_7!
+echo !Qyz-32!
 echo !MENU_OPTIONS!
 echo !Qyz-23!
 echo.
@@ -383,7 +384,8 @@ choice /c 1234 /n /m "!Qyz-19!"
 if %errorlevel% == 1 goto ip16
 if %errorlevel% == 2 goto ip6
 if %errorlevel% == 3 goto ip13
-if %errorlevel% == 4 goto ip15
+if %errorlevel% == 4 goto ip26
+if %errorlevel% == 5 goto ip15
 
 :ip23
 echo !Qyz-26!
@@ -404,3 +406,23 @@ if %errorlevel% neq 0 (
 echo !Qyz-8!
 pause > nul
 goto ip15
+
+:ip26
+set "input_file=%CF%\hsd.txt"
+curl -s -o "%input_file%" %hsdxz%
+set line_count=0
+for /f "usebackq delims=" %%A in ("%input_file%") do (
+    set /a line_count+=1
+)
+set /a random_line=%random% %% line_count + 1
+set line_number=0
+for /f "usebackq delims=" %%A in ("%input_file%") do (
+    set /a line_number+=1
+    if !line_number! equ !random_line! (
+        echo %%A
+    )
+
+)
+del %input_file%
+pause
+goto ip23

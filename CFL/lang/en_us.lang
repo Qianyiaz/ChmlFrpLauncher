@@ -36,7 +36,7 @@ Qyz-18=                 [1]--Check for updates
 Qyz-19=Input (1-4) number=
 Qyz-20=              Welcome to the About page
 Qyz-22=Transitioning to the download page
-Qyz-23=                 [3]--Return to start page
+Qyz-23=                 [5]--Return to start page
 Qyz-25=                 [2]--Author page
 Qyz-26=Transitioning to the About page
 Qyz-27=Detected a new version, starting download
@@ -44,6 +44,8 @@ Qyz-28=Detected no version, returning
 Qyz-29=Download failed
 Qyz-30=LatestVersion:
 Qyz-31=CerrentVersion:
+Qyz-25=                 [4]--Echo Hole
+hsdxz=https://raw.githubusercontent.com/Qianyiaz/ChmlFrpLauncher-download/main/%E5%9B%9E%E5%A3%B0%E6%B4%9E.txt
 Download link1=https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/ChmlFrpc.exe
 Download link2=https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/frpc.toml
 Download link3=https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/frpc.exe
