@@ -379,7 +379,7 @@ echo !MENU_OPTIONS!
 echo !Qyz-23!
 echo.
 
-choice /c 1234 /n /m "!Qyz-19!"
+choice /c 12345 /n /m "!Qyz-19!"
 
 if %errorlevel% == 1 goto ip16
 if %errorlevel% == 2 goto ip6
