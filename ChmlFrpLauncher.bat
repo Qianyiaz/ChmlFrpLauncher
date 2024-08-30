@@ -1,7 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "s=7"
 set "X=0"
 set "CF=%cd%\CFL"
 set "lang_folder=%CF%\lang"
@@ -13,7 +12,6 @@ set "toml=%CF%\frp\frpc.toml"
 set "xz_folder=%CF%\Download"
 set "dz=%xz_folder%\ChmlFrpLauncher.exe"
 set "tempfile=%CF%\github.txt"
-set "e=errorlevel"
 
 rmdir /s /q %xz_folder% >nul 2>&1
 del 1.bat >nul 2>&1
@@ -32,7 +30,7 @@ if errorlevel 1 (
     move "en_us.lang" "%lang_folder%"
     cls
     title ChmlFrpLauncher 
-    color %s%8
+    color 7a 
     type nul > %config%
     echo tag_name: "1.8.3"> %config%
     echo.
@@ -40,12 +38,13 @@ if errorlevel 1 (
     echo                     [1] Chinese-s           
     echo                     [2] English
     echo.
-    set /p langn="Enter your choice: "
-    
-    if "%langn%"=="1" (
+    set /p lang_choice="Enter your choice: "
+
+
+    if "%lang_choice%"=="1" (
         set "selected_lang=zh_cn"
         echo lang=zh_cn>> "%config%"
-    ) else if "%langn%"=="2" (
+    ) else if "%lang_choice%"=="2" (
         set "selected_lang=en_us"
         echo lang=en_us>> "%config%"
     ) else (
@@ -53,9 +52,13 @@ if errorlevel 1 (
         timeout /t 2 > nul
         goto choose_language
     )
+) else (
+    set "selected_lang="
+    for /f "usebackq delims=" %%A in ("%config%") do (
+        set "selected_lang=!selected_lang!%%A"
+    )
 )
-
-color %s%8
+color 7a 
 for /f "tokens=1,2 delims==" %%a in (%config%) do (
     if "%%a"=="lang" (
         set langs=%%b
@@ -77,12 +80,12 @@ goto ip17
 curl -s -o "%tempfile%" %Api.Github%
 
 for /f "tokens=2 delims=:, " %%B in ('type "%tempfile%" ^| findstr /i "tag_name"') do (
-    set l=%%B
-    set l=!l:"=!
+    set latestVersion=%%B
+    set latestVersion=!latestVersion:"=!
 )
 for /f "tokens=2 delims=:, " %%A in ('type "%config%" ^| findstr /i "tag_name"') do (
-    set C=%%A
-    set C=!C:"=!
+    set CURRENTVersion=%%A
+    set CURRENTVersion=!CURRENTVersion:"=!
 )
 for /f "tokens=2* delims=: " %%C in ('findstr /i "browser_download_url" "%tempfile%"') do (
 set "download_url=%%D"
@@ -91,16 +94,16 @@ set "download_url=!download_url:"=!"
 
 del %tempfile%
 
-for /f "tokens=1,2,3 delims=." %%a in ("%C%") do (
-    set /a C_MAJOR=%%a
-    set /a C_MINOR=%%b
-    set /a C_PATCH=%%c
+for /f "tokens=1,2,3 delims=." %%a in ("%CURRENTVersion%") do (
+    set /a CURRENT_MAJOR=%%a
+    set /a CURRENT_MINOR=%%b
+    set /a CURRENT_PATCH=%%c
 )
 
-for /f "tokens=1,2,3 delims=." %%a in ("%l%") do (
-    set /a L_MAJOR=%%a
-    set /a L_MINOR=%%b
-    set /a L_PATCH=%%c
+for /f "tokens=1,2,3 delims=." %%a in ("%latestVersion%") do (
+    set /a LATEST_MAJOR=%%a
+    set /a LATEST_MINOR=%%b
+    set /a LATEST_PATCH=%%c
 )
 
 if %X% == 1 (
@@ -110,13 +113,13 @@ if %X% == 1 (
 )
 
 :ip18
-if !L_MAJOR! gtr !C_MAJOR! (
+if !LATEST_MAJOR! gtr !CURRENT_MAJOR! (
     goto ip19
-) else if !L_MAJOR! equ !C_MAJOR! (
-    if !L_MINOR! gtr !C_MINOR! (
+) else if !LATEST_MAJOR! equ !CURRENT_MAJOR! (
+    if !LATEST_MINOR! gtr !CURRENT_MINOR! (
         goto ip19
-    ) else if !L_MINOR! equ !C_MINOR! (
-        if !L_PATCH! gtr !C_PATCH! (
+    ) else if !LATEST_MINOR! equ !CURRENT_MINOR! (
+        if !LATEST_PATCH! gtr !CURRENT_PATCH! (
             goto ip19
         ) else (
             goto ip27
@@ -143,7 +146,7 @@ IF EXIST %frpc% (
 
 :begin
 title ChmlFrpLauncher 
-color %s%8
+color 7a 
 cls
 echo.
 echo !MENU_TITLE! 
@@ -160,13 +163,13 @@ echo !MENU_OPTION_9!
 echo.
 choice /c 1234567 /n /m "!INPUT_PROMPT!"
 
-if %e% == 1 goto ip1
-if %e% == 2 goto ip2 
-if %e% == 3 goto ip5
-if %e% == 4 goto ip3
-if %e% == 5 goto ip4
-if %e% == 6 goto ip23
-if %e% == 7 goto ip7
+if %errorlevel% == 1 goto ip1
+if %errorlevel% == 2 goto ip2 
+if %errorlevel% == 3 goto ip5
+if %errorlevel% == 4 goto ip3
+if %errorlevel% == 5 goto ip4
+if %errorlevel% == 6 goto ip23
+if %errorlevel% == 7 goto ip7
 
 :ip1
 echo !START_FRPC!
@@ -177,7 +180,8 @@ echo !Qyz-11!
 
 IF EXIST %toml% (
     %frpc% -c %toml% 2>%cd%\CFL\log.txt
-) else (
+)
+IF EXIST %ini% (
     %frpc% -c %ini% 2>%cd%\CFL\log.txt
 )
 
@@ -188,10 +192,12 @@ goto ip15
 :ip2
 echo !MODIFY_CONFIG!
 
+IF EXIST %ini% (
+    start "" "%ini%" >nul 2>&1
+)
+
 IF EXIST %toml% (
     start "" "%toml%" >nul 2>&1
-) else (
-    start "" "%ini%" >nul 2>&1
 )
 
 goto ip15
@@ -203,7 +209,7 @@ ping localhost -n 5 > nul
 goto ip15
 
 :ip4
-Color %s%8
+Color 4A 
 Title !Qyz-13! 
 taskkill /f /im explorer.exe 
 cls
@@ -250,11 +256,11 @@ echo.
 
 choice /c 12345 /n /m "!INPUT_PROMPTX!"
 
-if %e% == 1 goto ip9
-if %e% == 2 goto ip10
-if %e% == 3 goto ip11
-if %e% == 4 goto ip12
-if %e% == 5 goto ip15
+if %errorlevel% == 1 goto ip9
+if %errorlevel% == 2 goto ip10
+if %errorlevel% == 3 goto ip11
+if %errorlevel% == 4 goto ip12
+if %errorlevel% == 5 goto ip15
 
 :ip9
 echo !DOWNLOAD_FRPC! 
@@ -299,6 +305,8 @@ echo !Qyz-22!
 ping localhost -n 2 > nul
 goto start
 
+
+
 :ip15
 echo !RETURNING_TO_START!
 ping localhost -n 2 > nul
@@ -309,17 +317,17 @@ set "X=1"
 goto ip17
 
 :ip20
-echo !Qyz-30!!l!
-echo !Qyz-31!!C!
+echo !Qyz-30!!latestVersion!
+echo !Qyz-31!!CURRENTVersion!
 ping localhost -n 3 > nul
 
-if !L_MAJOR! gtr !C_MAJOR! (
+if !LATEST_MAJOR! gtr !CURRENT_MAJOR! (
     goto ip19
-) else if !L_MAJOR! equ !C_MAJOR! (
-    if !L_MINOR! gtr !C_MINOR! (
+) else if !LATEST_MAJOR! equ !CURRENT_MAJOR! (
+    if !LATEST_MINOR! gtr !CURRENT_MINOR! (
         goto ip19
-    ) else if !L_MINOR! equ !C_MINOR! (
-        if !L_PATCH! gtr !C_PATCH! (
+    ) else if !LATEST_MINOR! equ !CURRENT_MINOR! (
+        if !LATEST_PATCH! gtr !CURRENT_PATCH! (
             goto ip19
         ) else (
             goto ip24
@@ -373,11 +381,11 @@ echo.
 
 choice /c 12345 /n /m "!Qyz-19!"
 
-if %e% == 1 goto ip16
-if %e% == 2 goto ip6
-if %e% == 3 goto ip13
-if %e% == 4 goto ip26
-if %e% == 5 goto ip15
+if %errorlevel% == 1 goto ip16
+if %errorlevel% == 2 goto ip6
+if %errorlevel% == 3 goto ip13
+if %errorlevel% == 4 goto ip26
+if %errorlevel% == 5 goto ip15
 
 :ip23
 echo !Qyz-26!
@@ -400,22 +408,21 @@ pause > nul
 goto ip15
 
 :ip26
-set "file=%CF%\hsd.txt"
-curl -s -o "%file%" %hsdxz%
-set count=0
-
-for /f "usebackq delims=" %%A in ("%file%") do (
-    set /a count+=1
+set "input_file=%CF%\hsd.txt"
+curl -s -o "%input_file%" %hsdxz%
+set line_count=0
+for /f "usebackq delims=" %%A in ("%input_file%") do (
+    set /a line_count+=1
 )
-set /a line=%random% %% count + 1
-set number=0
-for /f "usebackq delims=" %%A in ("%file%") do (
-    set /a number+=1
-    if !number! equ !line! (
+set /a random_line=%random% %% line_count + 1
+set line_number=0
+for /f "usebackq delims=" %%A in ("%input_file%") do (
+    set /a line_number+=1
+    if !line_number! equ !random_line! (
         echo %%A
     )
-)
 
-del %file%
+)
+del %input_file%
 pause
 goto ip23
