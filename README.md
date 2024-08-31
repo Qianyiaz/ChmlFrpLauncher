@@ -34,7 +34,7 @@
 
 ChmlFrpLauncher会根据你所填lang=后面的字符加上.lang后缀在lang文件夹中寻找对应文件。
 
-例如： 语言文件：` zh_cn.lang`        配置文件：` lang=zh_cn` 
+例如： ` lang=zh_cn`  ` zh_cn.lang`
 
 在1.8.3版本中 ChmlFrpLauncher会自动检查更新，但是对github访问慢的会有一定程度的影响。
 
