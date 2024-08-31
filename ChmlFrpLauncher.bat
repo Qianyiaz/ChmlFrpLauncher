@@ -1,19 +1,19 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "s=7"
-set "X=0"
-set "CF=%cd%\CFL"
-set "lang_folder=%CF%\lang"
-set "h_file=%CF%\html"
-set "config=%CF%\config.txt"
-set "frpc=%CF%\frp\frpc.exe"
-set "ini=%CF%\frp\frpc.ini"
-set "toml=%CF%\frp\frpc.toml"
-set "xz_folder=%CF%\Download"
-set "dz=%xz_folder%\ChmlFrpLauncher.exe"
-set "tempfile=%CF%\github.txt"
-set "e=errorlevel"
+set s=7
+set X=0
+set v=1.8.4
+set CF=%cd%\CFL
+set lang_folder=%CF%\lang
+set h_file=%CF%\html
+set config=%CF%\config.txt
+set frpc=%CF%\frp\frpc.exe
+set ini=%CF%\frp\frpc.ini
+set toml=%CF%\frp\frpc.toml
+set xz_folder=%CF%\Download
+set dz=%xz_folder%\ChmlFrpLauncher.exe
+set tempfile=%CF%\github.txt
 
 rmdir /s /q %xz_folder% >nul 2>&1
 del 1.bat >nul 2>&1
@@ -24,17 +24,18 @@ for /f "usebackq delims=" %%A in ("%config%") do (
 )
 echo !content! | find /i "lang" > nul
 if errorlevel 1 (
-    :choose_language
+    :cl
     mkdir "%lang_folder%"
     mkdir "%h_file%"
     mkdir "%cd%\CFL\frp"
     move "zh_cn.lang" "%lang_folder%"
     move "en_us.lang" "%lang_folder%"
     cls
+
     title ChmlFrpLauncher 
     color %s%8
     type nul > %config%
-    echo tag_name: "1.8.3"> %config%
+    echo tag_name: "%v%"> %config%
     echo.
     echo            Please choose your language:
     echo                     [1] Chinese-s           
@@ -51,7 +52,7 @@ if errorlevel 1 (
     ) else (
         echo Invalid choice. Please try again. 
         timeout /t 2 > nul
-        goto choose_language
+        goto cl
     )
 )
 
@@ -62,6 +63,9 @@ for /f "tokens=1,2 delims==" %%a in (%config%) do (
     )
 )
 for /f "tokens=1,* delims==" %%a in (%lang_folder%\%langs%.lang) do (
+    set "%%a=%%b"
+)
+for /f "tokens=1,* delims==" %%a in (%config%) do (
     set "%%a=%%b"
 )
 goto ip14
@@ -130,7 +134,11 @@ if !L_MAJOR! gtr !C_MAJOR! (
 
 :ip27
 IF EXIST %frpc% (
-    goto begin
+    if %x% == 2 (
+        goto ip15
+    ) else (
+        goto begin
+    )
 ) ELSE (
     echo !Qyz-9!
     echo !Qyz-10!
@@ -160,25 +168,27 @@ echo !MENU_OPTION_9!
 echo.
 choice /c 1234567 /n /m "!INPUT_PROMPT!"
 
-if %e% == 1 goto ip1
-if %e% == 2 goto ip2 
-if %e% == 3 goto ip5
-if %e% == 4 goto ip3
-if %e% == 5 goto ip4
-if %e% == 6 goto ip23
-if %e% == 7 goto ip7
+if %errorlevel% == 1 goto ip1
+if %errorlevel% == 2 goto ip2 
+if %errorlevel% == 3 goto ip5
+if %errorlevel% == 4 goto ip3
+if %errorlevel% == 5 goto ip4
+if %errorlevel% == 6 goto ip23
+if %errorlevel% == 7 goto ip7
 
 :ip1
 echo !START_FRPC!
 ping localhost -n 3 > nul
 cls 
 echo !Qyz-11!
-%frpc% -v 
-
+%frpc% -v
 IF EXIST %toml% (
     %frpc% -c %toml% 2>%cd%\CFL\log.txt
-) else (
+) else if EXIST %ini% (
     %frpc% -c %ini% 2>%cd%\CFL\log.txt
+) else (
+    set x=2
+    goto ip27
 )
 
 echo !Qyz-12!
@@ -189,9 +199,9 @@ goto ip15
 echo !MODIFY_CONFIG!
 
 IF EXIST %toml% (
-    start "" "%toml%" >nul 2>&1
+    start "" "%toml%"
 ) else (
-    start "" "%ini%" >nul 2>&1
+    start "" "%ini%"
 )
 
 goto ip15
@@ -216,7 +226,7 @@ goto ip15
 
 :ip5
 echo !CLOSE_FRPC!
-taskkill /im frpc.exe /f 1>nul 2>nul
+taskkill /im frpc.exe /f 
 goto ip15
 
 :ip6
@@ -250,11 +260,11 @@ echo.
 
 choice /c 12345 /n /m "!INPUT_PROMPTX!"
 
-if %e% == 1 goto ip9
-if %e% == 2 goto ip10
-if %e% == 3 goto ip11
-if %e% == 4 goto ip12
-if %e% == 5 goto ip15
+if %errorlevel% == 1 goto ip9
+if %errorlevel% == 2 goto ip10
+if %errorlevel% == 3 goto ip11
+if %errorlevel% == 4 goto ip12
+if %errorlevel% == 5 goto ip15
 
 :ip9
 echo !DOWNLOAD_FRPC! 
@@ -373,11 +383,11 @@ echo.
 
 choice /c 12345 /n /m "!Qyz-19!"
 
-if %e% == 1 goto ip16
-if %e% == 2 goto ip6
-if %e% == 3 goto ip13
-if %e% == 4 goto ip26
-if %e% == 5 goto ip15
+if %errorlevel% == 1 goto ip16
+if %errorlevel% == 2 goto ip6
+if %errorlevel% == 3 goto ip13
+if %errorlevel% == 4 goto ip26
+if %errorlevel% == 5 goto ip15
 
 :ip23
 echo !Qyz-26!
