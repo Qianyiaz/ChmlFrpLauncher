@@ -207,7 +207,7 @@ IF EXIST %toml% (
 goto ip15
 
 :ip3
-start "" "https://www.bilibili.com/video/BV1GJ411x7h7?t=13.8"
+start "" "https://www.bilibili.com/video/BV1GJ411x7h7"
 echo !DOWNLOAD_FRPCq!
 ping localhost -n 5 > nul
 goto ip15
