@@ -1,4 +1,4 @@
-MENU_TITLE=            欢迎 使用 CHml Frp Launcher（本产品是免费软件，请易做商业用途）
+MENU_TITLE=            欢迎 使用 CHml Frp Launcher
 MENU_OPTIONS=             ----------------------
 MENU_OPTION_1=                 [1]--启动 frpc     
 MENU_OPTION_2=                 [2]--修改 ini/toml

@@ -1,4 +1,4 @@
-MENU_TITLE=            Welcome to CHml Frp Launcher(This product is free software, please do not use it for commercial purposes)
+MENU_TITLE=            Welcome to CHml Frp Launcher
 MENU_OPTIONS=             ------------------------
 MENU_OPTION_1=                 [1]--Start frpc     
 MENU_OPTION_2=                 [2]--Modify ini/toml
@@ -17,7 +17,7 @@ EXITING=Exiting
 NAVIGATING=Navigating
 RETURNING_TO_START=Returning to the start page
 INPUT_PROMPT=Input (1-7) number=
-MENUT_TITLE=        Please select the version of frpc you want to use
+MENUT_TITLE=      Please select the version of frpc you want to use
 INPUT_PROMPTX=Input (1-5) number=
 Qyz-1=                 [1]--ChmlFrpc
 Qyz-2=                 [2]--Original frpc
@@ -44,7 +44,7 @@ Qyz-28=Detected no version, returning
 Qyz-29=Download failed
 Qyz-30=LatestVersion:
 Qyz-31=CerrentVersion:
-Qyz-25=                 [4]--Echo Hole
+Qyz-32=                 [4]--Echo Hole
 hsdxz=https://raw.githubusercontent.com/Qianyiaz/ChmlFrpLauncher-download/main/%E5%9B%9E%E5%A3%B0%E6%B4%9E.txt
 Download link1=https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/ChmlFrpc.exe
 Download link2=https://github.com/Qianyiaz/ChmlFrpLauncher/releases/download/1.0/frpc.toml
