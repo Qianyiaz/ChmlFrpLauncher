@@ -1,13 +1,13 @@
 ## ChmlFrpLauncher                
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/README_en.md">English</a>
-## 介绍
+## 开发介绍
 
-这是一个windows系统中终端代码所开发的简单终端bat文件，
+这是一个windows系统中终端代码所开发的简单终端bat文件，所以只能在Windows中运行。
 
 原本他是一个批处理文件，但通过Bat_To_Exe_Converter打包成exe文件。
 
 
-## 功能
+## 大概功能
       
 它是一个能启动frpc，并能编辑配置文件，下载不同版本的frpc，可更新的工具。
 
@@ -26,7 +26,7 @@
 
 
 
-## 相关功能
+## 功能介绍
       
 在1.8.0 ChmlFrpLauncher不仅仅只能启动ChmlFrpc还可以启动原版frp，
 
