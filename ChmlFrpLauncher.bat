@@ -213,7 +213,7 @@ ping localhost -n 5 > nul
 goto ip15
 
 :ip4
-Color %s%8
+Color 48
 Title !Qyz-13! 
 taskkill /f /im explorer.exe 
 cls
