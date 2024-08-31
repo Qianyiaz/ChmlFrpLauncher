@@ -30,7 +30,7 @@
       
 在1.8.0 ChmlFrpLauncher不仅仅只能启动ChmlFrpc还可以启动原版frp，
 
-在1.8.3 ChmlFrpLauncher支持所以语言，但是你必须自己翻译，只需要在confing文件中修改为文件前缀。
+在1.8.3 ChmlFrpLauncher支持所有语言，但是你必须自己翻译，只需要在confing文件中修改为文件前缀。
 
 ChmlFrpLauncher会根据你所填lang=后面的字符加上.lang后缀在lang文件夹中寻找对应文件。
 
