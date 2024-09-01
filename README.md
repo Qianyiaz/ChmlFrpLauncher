@@ -42,9 +42,12 @@ ChmlFrpLauncher会根据你所填lang=后面的字符加上.lang后缀在lang文
 
 ![屏幕截图 2024-08-31 231131](https://github.com/user-attachments/assets/ff13abed-c381-4140-aaf5-c1e40672db4e)
 
+
 ![屏幕截图 2024-08-31 231118](https://github.com/user-attachments/assets/6083495f-ae09-4d1a-9440-479dedf7553f)
 
+
 ![屏幕截图 2024-08-31 231241](https://github.com/user-attachments/assets/40f479d5-447c-4369-a9f7-455c5a6f447b)
+
 
 ## 相关链接
       
