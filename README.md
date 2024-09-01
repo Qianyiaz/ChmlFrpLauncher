@@ -16,15 +16,13 @@
 <a href="https://github.com/fatedier/frp">点击前往源项目</a>
 
 
-## 使用
+## 如何使用
       
 只需启动后输入123456数字即可使用，但在之前要下载frpc。
 
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/wiki">点击前往查看官方wiki</a>
 
-![启动页](https://github.com/user-attachments/assets/b37bfbf4-d121-476f-8c78-e8c11e296a1a)
-
-
+![屏幕截图 2024-08-31 231123](https://github.com/user-attachments/assets/339155b7-3825-4270-9451-ae5a0c655fdc)
 
 ## 功能介绍
       
@@ -42,8 +40,11 @@ ChmlFrpLauncher会根据你所填lang=后面的字符加上.lang后缀在lang文
 
 担心下载问题，但是在更新时仍然使用Github检测更新下载，目前没找到国内替代品。
 
-![下载](https://github.com/user-attachments/assets/f3c07d43-93d0-454d-a1fa-ef14518b46c8)
+![屏幕截图 2024-08-31 231131](https://github.com/user-attachments/assets/ff13abed-c381-4140-aaf5-c1e40672db4e)
 
+![屏幕截图 2024-08-31 231118](https://github.com/user-attachments/assets/6083495f-ae09-4d1a-9440-479dedf7553f)
+
+![屏幕截图 2024-08-31 231241](https://github.com/user-attachments/assets/40f479d5-447c-4369-a9f7-455c5a6f447b)
 
 ## 相关链接
       
