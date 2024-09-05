@@ -1,13 +1,15 @@
 @echo off
+title ChmlFrpLauncher 
 setlocal enabledelayedexpansion
 
 set s=7
 set X=0
 set v=1.8.4
 set CF=%cd%\CFL
+set lo=%CF%\.log
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
-set config=%CF%\config.txt
+set config=%CF%\.config
 set frpc=%CF%\frp\frpc.exe
 set ini=%CF%\frp\frpc.ini
 set toml=%CF%\frp\frpc.toml
@@ -150,7 +152,6 @@ IF EXIST %frpc% (
 
 
 :begin
-title ChmlFrpLauncher 
 color %s%8
 cls
 echo.
@@ -160,8 +161,8 @@ echo !MENU_OPTION_1!
 echo !MENU_OPTION_2!
 echo !MENU_OPTION_3!
 echo !MENU_OPTIONS!
-echo !MENU_OPTION_4!
-echo !MENU_OPTION_5!
+echo                  !Qyz-30!!l!
+echo                  !Qyz-31!!C!
 echo !MENU_OPTIONS!
 echo !MENU_OPTION_6!
 echo !MENU_OPTION_9!
@@ -183,9 +184,9 @@ cls
 echo !Qyz-11!
 %frpc% -v
 IF EXIST %toml% (
-    %frpc% -c %toml% 2>%cd%\CFL\log.txt
+    start "" %frpc% -c %toml%
 ) else if EXIST %ini% (
-    %frpc% -c %ini% 2>%cd%\CFL\log.txt
+    start "" %frpc% -c %ini%
 ) else (
     set x=2
     goto ip27
