@@ -36,6 +36,7 @@ if errorlevel 1 (
     type nul > %config%
     echo tag_name=%v%>> %config%
     echo name=frpc >> %config%
+    echo Count=0 >> %config%
     echo.
     echo            Please choose your language:
     echo                     [1] Chinese-s           
@@ -189,6 +190,22 @@ IF EXIST %toml% (
     set x=2
     goto ip27
 )
+
+set /a Count=%Count% + 1
+
+(for /f "usebackq delims=" %%A in ("%config%") do (
+    set "l=%%A"
+    echo !l! | findstr /c:"Count=" >nul
+    if errorlevel 1 (
+        echo !l!
+    )
+)) > ".tmp"
+
+move /Y ".tmp" "%config%" >> %lo%
+
+echo Count=%Count% >> %config%
+
+echo !Qy!!Count!!AS!
 
 echo !Qyz-12!
 pause > nul
