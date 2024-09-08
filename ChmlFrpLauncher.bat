@@ -72,8 +72,8 @@ goto ip14
     move "index.html" "%h_file%"
     move "indext.html" "%h_file%" 
     del /f zh_cn.lang 
-    del /f en_us.lang
-) 2> %lo%
+    del /f en_us.lang 
+) > %lo% 2>&1
 
 goto ip17
 
@@ -194,10 +194,10 @@ IF EXIST %toml% (
 set /a Count=%Count% + 1
 
 (for /f "usebackq delims=" %%A in ("%config%") do (
-    set "l=%%A"
-    echo !l! | findstr /c:"Count=" >nul
+    set "lz=%%A"
+    echo !lz! | findstr /c:"Count=" >nul
     if errorlevel 1 (
-        echo !l!
+        echo !lz!
     )
 )) > ".tmp"
 
