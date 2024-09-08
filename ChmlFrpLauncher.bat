@@ -1,12 +1,12 @@
 @echo off
-title ChmlFrpLauncher 
 setlocal enabledelayedexpansion
 
 set s=7
 set X=0
 set v=1.8.4
 set CF=%cd%\CFL
-set lo=%CF%\.log
+set CFL=ChmlFrpLauncher
+set lo=%CF%\.logs
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
 set config=%CF%\.config
@@ -14,11 +14,8 @@ set frpc=%CF%\frp\frpc.exe
 set ini=%CF%\frp\frpc.ini
 set toml=%CF%\frp\frpc.toml
 set xz_folder=%CF%\Download
-set dz=%xz_folder%\ChmlFrpLauncher.exe
+set dz=%xz_folder%\%CFL%.exe
 set tempfile=%CF%\github.txt
-
-rmdir /s /q %xz_folder% >nul 2>&1
-del 1.bat >nul 2>&1
 
 set "content="
 for /f "usebackq delims=" %%A in ("%config%") do (
@@ -34,10 +31,11 @@ if errorlevel 1 (
     move "en_us.lang" "%lang_folder%"
     cls
 
-    title ChmlFrpLauncher 
+    
     color %s%8
     type nul > %config%
-    echo tag_name: "%v%"> %config%
+    echo tag_name=%v%>> %config%
+    echo name=frpc >> %config%
     echo.
     echo            Please choose your language:
     echo                     [1] Chinese-s           
@@ -57,39 +55,38 @@ if errorlevel 1 (
         goto cl
     )
 )
-
 color %s%8
-for /f "tokens=1,2 delims==" %%a in (%config%) do (
-    if "%%a"=="lang" (
-        set langs=%%b
-    )
-)
-for /f "tokens=1,* delims==" %%a in (%lang_folder%\%langs%.lang) do (
-    set "%%a=%%b"
-)
 for /f "tokens=1,* delims==" %%a in (%config%) do (
     set "%%a=%%b"
 )
+for /f "tokens=1,* delims==" %%a in (%lang_folder%\%lang%.lang) do (
+    set "%%a=%%b"
+)
 goto ip14
-
 :ip14
-move "index.html" "%h_file%" >nul 2>&1
-move "indext.html" "%h_file%" >nul 2>&1
-del /f zh_cn.lang >nul 2>&1
-del /f en_us.lang >nul 2>&1
+
+(
+    rmdir /s /q %xz_folder% 
+    del 1.bat
+    move "index.html" "%h_file%"
+    move "indext.html" "%h_file%" 
+    del /f zh_cn.lang 
+    del /f en_us.lang
+) 2> %lo%
+
 goto ip17
 
 :ip17
+
+Title !Qyz-33!
+
 curl -s -o "%tempfile%" %Api.Github%
 
 for /f "tokens=2 delims=:, " %%B in ('type "%tempfile%" ^| findstr /i "tag_name"') do (
     set l=%%B
     set l=!l:"=!
 )
-for /f "tokens=2 delims=:, " %%A in ('type "%config%" ^| findstr /i "tag_name"') do (
-    set C=%%A
-    set C=!C:"=!
-)
+
 for /f "tokens=2* delims=: " %%C in ('findstr /i "browser_download_url" "%tempfile%"') do (
 set "download_url=%%D"
 set "download_url=!download_url:"=!"
@@ -97,7 +94,7 @@ set "download_url=!download_url:"=!"
 
 del %tempfile%
 
-for /f "tokens=1,2,3 delims=." %%a in ("%C%") do (
+for /f "tokens=1,2,3 delims=." %%a in ("%tag_name%") do (
     set /a C_MAJOR=%%a
     set /a C_MINOR=%%b
     set /a C_PATCH=%%c
@@ -116,6 +113,7 @@ if %X% == 1 (
 )
 
 :ip18
+title %CFL%
 if !L_MAJOR! gtr !C_MAJOR! (
     goto ip19
 ) else if !L_MAJOR! equ !C_MAJOR! (
@@ -162,7 +160,7 @@ echo !MENU_OPTION_2!
 echo !MENU_OPTION_3!
 echo !MENU_OPTIONS!
 echo                  !Qyz-30!!l!
-echo                  !Qyz-31!!C!
+echo                  !Qyz-31!!tag_name!
 echo !MENU_OPTIONS!
 echo !MENU_OPTION_6!
 echo !MENU_OPTION_9!
@@ -184,9 +182,9 @@ cls
 echo !Qyz-11!
 %frpc% -v
 IF EXIST %toml% (
-    start "" %frpc% -c %toml%
+    start "%name%" %frpc% -c %toml%
 ) else if EXIST %ini% (
-    start "" %frpc% -c %ini%
+    start "%name%" %frpc% -c %ini% 
 ) else (
     set x=2
     goto ip27
@@ -321,7 +319,7 @@ goto ip17
 
 :ip20
 echo !Qyz-30!!l!
-echo !Qyz-31!!C!
+echo !Qyz-31!!tag_name!
 ping localhost -n 3 > nul
 
 if !L_MAJOR! gtr !C_MAJOR! (
@@ -359,12 +357,16 @@ if %errorlevel% neq 0 (
 pause
 
 type nul > 1.bat
-echo @echo off >> 1.bat
-echo del /f %cd%\ChmlFrpLauncher.exe >> 1.bat
-echo del %cd%\CFL\config.txt >> 1.bat
-echo move %cd%\CFL\Download\ChmlFrpLauncher.exe %cd% >> 1.bat
-echo start ChmlFrpLauncher.exe >> 1.bat
-echo exit >> 1.bat
+
+(
+    echo @echo off
+    echo del /f "%cd%\ChmlFrpLauncher.exe"
+    echo del "%cd%\CFL\config.txt"
+    echo move "%cd%\CFL\Download\ChmlFrpLauncher.exe" "%cd%"
+    echo start ChmlFrpLauncher.exe
+    echo exit
+) > 1.bat
+
 start 1.bat
 
 exit
@@ -403,11 +405,9 @@ goto ip23
 if %errorlevel% neq 0 (
     echo !Qyz-29!
     goto ip13
-) else (
-    echo !Qyz-8!
 )
 echo !Qyz-8!
-pause > nul
+pause
 goto ip15
 
 :ip26
