@@ -1,3 +1,5 @@
+::[Bat To Exe Converter]
+::978f952a14a936cc963da21a135fa983
 @echo off
 setlocal enabledelayedexpansion
 
@@ -37,6 +39,7 @@ if errorlevel 1 (
     echo tag_name=%v%>> %config%
     echo name=frpc >> %config%
     echo Count=0 >> %config%
+    echo ktgx=0 >> %config%
     echo.
     echo            Please choose your language:
     echo                     [1] Chinese-s           
@@ -73,7 +76,7 @@ goto ip14
     move "indext.html" "%h_file%" 
     del /f zh_cn.lang 
     del /f en_us.lang 
-) > %lo% 2>&1
+) >>nul 2>&1
 
 goto ip17
 
@@ -81,7 +84,11 @@ goto ip17
 
 Title !Qyz-33!
 
-curl -s -o "%tempfile%" %Api.Github%
+if %ktgx% == 0 (
+    curl -s -o "%tempfile%" %Api.Github%
+) else if %ktgx% == 1 (
+    goto ip18
+)
 
 for /f "tokens=2 delims=:, " %%B in ('type "%tempfile%" ^| findstr /i "tag_name"') do (
     set l=%%B
@@ -96,15 +103,15 @@ set "download_url=!download_url:"=!"
 del %tempfile%
 
 for /f "tokens=1,2,3 delims=." %%a in ("%tag_name%") do (
-    set /a C_MAJOR=%%a
-    set /a C_MINOR=%%b
-    set /a C_PATCH=%%c
+    set /a C_M=%%a
+    set /a C_M=%%b
+    set /a C_P=%%c
 )
 
 for /f "tokens=1,2,3 delims=." %%a in ("%l%") do (
-    set /a L_MAJOR=%%a
-    set /a L_MINOR=%%b
-    set /a L_PATCH=%%c
+    set /a L_M=%%a
+    set /a L_M=%%b
+    set /a L_P=%%c
 )
 
 if %X% == 1 (
@@ -115,13 +122,13 @@ if %X% == 1 (
 
 :ip18
 title %CFL%
-if !L_MAJOR! gtr !C_MAJOR! (
+if !L_M! gtr !C_M! (
     goto ip19
-) else if !L_MAJOR! equ !C_MAJOR! (
-    if !L_MINOR! gtr !C_MINOR! (
+) else if !L_M! equ !C_M! (
+    if !L_M! gtr !C_M! (
         goto ip19
-    ) else if !L_MINOR! equ !C_MINOR! (
-        if !L_PATCH! gtr !C_PATCH! (
+    ) else if !L_M! equ !C_M! (
+        if !L_P! gtr !C_P! (
             goto ip19
         ) else (
             goto ip27
@@ -166,7 +173,8 @@ echo !MENU_OPTIONS!
 echo !MENU_OPTION_6!
 echo !MENU_OPTION_9!
 echo.
-choice /c 1234567 /n /m "!INPUT_PROMPT!"
+
+choice /c 12345678 /n /m "!INPUT_PROMPT!"
 
 if %errorlevel% == 1 goto ip1
 if %errorlevel% == 2 goto ip2 
@@ -175,17 +183,21 @@ if %errorlevel% == 4 goto ip3
 if %errorlevel% == 5 goto ip4
 if %errorlevel% == 6 goto ip23
 if %errorlevel% == 7 goto ip7
+if %errorlevel% == 8 goto ip28
+
+:ip28
+start "" %config%
+goto ip15
 
 :ip1
 echo !START_FRPC!
 ping localhost -n 3 > nul
 cls 
 echo !Qyz-11!
-%frpc% -v
 IF EXIST %toml% (
-    start "%name%" %frpc% -c %toml%
+    start "%name%" cmd /c "%frpc% -v & %frpc% -c %toml% & pause"
 ) else if EXIST %ini% (
-    start "%name%" %frpc% -c %ini% 
+    start "%name%" cmd /c "%frpc% -v & %frpc% -c %ini% & pause"
 ) else (
     set x=2
     goto ip27
