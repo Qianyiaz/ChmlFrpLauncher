@@ -1,4 +1,39 @@
 ::[Bat To Exe Converter]
+::
+::fBE1pAF6MU+EWHreyHcjLQlHcBODMmy2A7wgzO3o5P6IsnE6XfY3bY3n+byDLMYB+mnlYJgu3n9IpOgqICdQah+nUgY6rWta+GyROsv8
+::fBE1pAF6MU+EWHreyHcjLQlHcBODMmy2A7wgzO3o5P6IsnE6XfY3bY3n+byDLMYB+mnlYJgu3n9IpOgqICdQah+nUgY6rWtaoiqNI8qQ0w==
+::fBE1pAF6MU+EWHreyHcjLQlHcBODMmy2A7wgzO3o5P6IsnE6XfY3bY3n+byDLMYB+mnlYJgu3n9IpOgqICdUfxysUgo6lntR+GiEOcD8
+::fBE1pAF6MU+EWHreyHcjLQlHcBODMmy2A7wgzO3o5P6IsnE6XfY3bY3n+byDLMYB+mnlYJgu3n9IpOgqICdUfxysUhU8lm1M+GiEOcD8
+::YAwzoRdxOk+EWAjk
+::fBw5plQjdCyDJGyX8VAjFAxVQgOOOWKGIrAP4/z0/9agq1kVQeADW4fW1pKcMMwS/0vnfZM/6nxbjsIPAxUWdxGkDg==
+::YAwzuBVtJxjWCl3EqQJgSA==
+::ZR4luwNxJguZRRnk
+::Yhs/ulQjdF+5
+::cxAkpRVqdFKZSDk=
+::cBs/ulQjdF+5
+::ZR41oxFsdFKZSTk=
+::eBoioBt6dFKZSTk=
+::cRo6pxp7LAbNWATEpSI=
+::egkzugNsPRvcWATEpCI=
+::dAsiuh18IRvcCxnZtBJQ
+::cRYluBh/LU+EWAnk
+::YxY4rhs+aU+IeA==
+::cxY6rQJ7JhzQF1fEqQJhZkMaGErWXA==
+::ZQ05rAF9IBncCkqN+0xwdVsFAlzMaAs=
+::ZQ05rAF9IAHYFVzEqQITIBZYahaSEGqvCLYU7fqb
+::eg0/rx1wNQPfEVWB+kM9LVsJDCeKMWecFKUw6f317OKCsC0=
+::fBEirQZwNQPfEVWB+kM9LVsJDCeKMWecFKUw6f317OKCsC0=
+::cRolqwZ3JBvQF1fEqQITIBZYahaSEGqvCLYU7fqb
+::dhA7uBVwLU+EWPtNxVsqaEkEHlDi
+::YQ03rBFzNR3SWATEVosBMQEUHlTQaAs=
+::dhAmsQZ3MwfNWATEVosBMQEUHlTQaAs=
+::ZQ0/vhVqMQ3MEVWAtB9witJlVR7CbjvoUtU=
+::Zg8zqx1/OA3MEVWAtB9witJlVR7CbjvoUtU=
+::dhA7pRFwIByZRRkCA4JQ
+::Zh4grVQjdCyDJGyX8VAjFAxVQgOOOWKGIrAP4/z0/9agq1kVQeADW4fW1pKcMMwS/0vnfZM/6nhTlvcvBBZUWAC7Qg4hp21Ks3bLMt+Z0w==
+::YB416Ek+Zm8=
+::
+::
 ::978f952a14a936cc963da21a135fa983
 @echo off
 setlocal enabledelayedexpansion
@@ -8,7 +43,6 @@ set X=0
 set v=1.8.4
 set CF=%cd%\CFL
 set CFL=ChmlFrpLauncher
-set lo=%CF%\.logs
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
 set config=%CF%\.config
@@ -19,6 +53,13 @@ set xz_folder=%CF%\Download
 set dz=%xz_folder%\%CFL%.exe
 set tempfile=%CF%\github.txt
 
+(
+    rmdir /s /q %xz_folder% 
+    del 1.bat
+    move "index.html" "%h_file%"
+    move "indext.html" "%h_file%" 
+) >>nul 2>&1
+
 set "content="
 for /f "usebackq delims=" %%A in ("%config%") do (
     set "content=!content!%%A"
@@ -26,20 +67,23 @@ for /f "usebackq delims=" %%A in ("%config%") do (
 echo !content! | find /i "lang" > nul
 if errorlevel 1 (
     :cl
+    (
     mkdir "%lang_folder%"
     mkdir "%h_file%"
     mkdir "%cd%\CFL\frp"
     move "zh_cn.lang" "%lang_folder%"
     move "en_us.lang" "%lang_folder%"
-    cls
+    del /f zh_cn.lang 
+    del /f en_us.lang 
+    ) >>nul 2>&1
 
-    
     color %s%8
     type nul > %config%
     echo tag_name=%v%>> %config%
     echo name=frpc >> %config%
     echo Count=0 >> %config%
     echo ktgx=0 >> %config%
+    title %CFL%
     echo.
     echo            Please choose your language:
     echo                     [1] Chinese-s           
@@ -68,27 +112,18 @@ for /f "tokens=1,* delims==" %%a in (%lang_folder%\%lang%.lang) do (
 )
 goto ip14
 :ip14
+if %ktgx% == 0 (
 
-(
-    rmdir /s /q %xz_folder% 
-    del 1.bat
-    move "index.html" "%h_file%"
-    move "indext.html" "%h_file%" 
-    del /f zh_cn.lang 
-    del /f en_us.lang 
-) >>nul 2>&1
-
-goto ip17
+    goto ip17
+) else if %ktgx% == 1 (
+    goto ip18
+)
 
 :ip17
 
 Title !Qyz-33!
 
-if %ktgx% == 0 (
-    curl -s -o "%tempfile%" %Api.Github%
-) else if %ktgx% == 1 (
-    goto ip18
-)
+curl -s -o "%tempfile%" %Api.Github%
 
 for /f "tokens=2 delims=:, " %%B in ('type "%tempfile%" ^| findstr /i "tag_name"') do (
     set l=%%B
@@ -193,7 +228,6 @@ goto ip15
 echo !START_FRPC!
 ping localhost -n 3 > nul
 cls 
-echo !Qyz-11!
 IF EXIST %toml% (
     start "%name%" cmd /c "%frpc% -v & %frpc% -c %toml% & pause"
 ) else if EXIST %ini% (
@@ -213,7 +247,7 @@ set /a Count=%Count% + 1
     )
 )) > ".tmp"
 
-move /Y ".tmp" "%config%" >> %lo%
+move /Y ".tmp" "%config%" >>nul 2>&1
 
 echo Count=%Count% >> %config%
 
@@ -299,6 +333,10 @@ echo !DOWNLOAD_FRPC!
 
 powershell curl -o %frpc% !Download link1!
 
+IF EXIST %toml% (
+    del %toml%
+)
+
 IF EXIST %ini% (
     goto ip25
 ) ELSE (
@@ -310,6 +348,10 @@ IF EXIST %ini% (
 echo !DOWNLOAD_FRPC! 
 powershell curl -o %frpc% !Download link3!
 
+IF EXIST %ini% (
+    del %ini%
+)
+
 IF EXIST %toml% (
     goto ip25
 ) ELSE (
@@ -320,6 +362,10 @@ IF EXIST %toml% (
 :ip11
 echo !DOWNLOAD_FRPC! 
 powershell curl -o %frpc% !Download link4!
+
+IF EXIST %ini% (
+    del %ini%
+)
 
 IF EXIST %toml% (
     goto ip25
@@ -402,6 +448,7 @@ exit
 
 :ip22
 cls
+title %CFL%
 echo.
 echo !Qyz-20! 
 echo !MENU_OPTIONS!
