@@ -36,6 +36,14 @@ ChmlFrpLauncher会根据你所填lang=后面的字符加上.lang后缀在lang文
 
 在1.8.3版本中 ChmlFrpLauncher会自动检查更新，但是对github访问慢的会有一定程度的影响。
 
+```
+Version=1.8.4
+Name=frpc 
+Update=false
+Lang=zh_cn
+Count=x
+```
+
 新增了新的页面下载相关的frpc和他的配置文件，国内下载使用Gitee镜像下载源不必
 
 担心下载问题，但是在更新时仍然使用Github检测更新下载，目前没找到国内替代品。
