@@ -196,6 +196,7 @@ IF EXIST %frpc% (
 :begin
 color %s%8
 cls
+Title %CFL%
 echo.
 echo !M-1! 
 echo !M-s!
@@ -303,7 +304,6 @@ goto ip23
 echo !M-13!
 ping localhost -n 3 > nul
 exit 
-
 
 
 
