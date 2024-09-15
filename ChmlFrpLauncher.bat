@@ -113,6 +113,8 @@ for /f "tokens=1,* delims==" %%a in (%lang_folder%\%lang%.lang) do (
     del 1.bat
     del /f zh_cn.lang 
     del /f en_us.lang 
+    del /f index.html
+    del /f indext.html
 ) >>nul 2>&1
 
 if %Update% == true (
