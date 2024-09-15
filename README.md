@@ -25,12 +25,8 @@
 ![屏幕截图 2024-08-31 231123](https://github.com/user-attachments/assets/339155b7-3825-4270-9451-ae5a0c655fdc)
 
 ## 功能介绍
-      
-在1.8.0 ChmlFrpLauncher不仅仅只能启动ChmlFrpc还可以启动原版frp，
 
-在1.8.3 ChmlFrpLauncher支持所有语言，但是你必须自己翻译，只需要在confing文件中修改为文件前缀。
-
-ChmlFrpLauncher会根据你所填lang=后面的字符加上.lang后缀在lang文件夹中寻找对应文件。
+ChmlFrpLauncher支持所有语言，但是你必须自己翻译，只需要在confing文件中修改为文件前缀，会根据你所填lang=后面的字符加上.lang后缀在lang文件夹中寻找对应文件。
 
 例如： ` lang=zh_cn`  ` zh_cn.lang`
 
@@ -45,8 +41,7 @@ Lang=zh_cn
 Count=x
 ```
 
-新增了新的页面下载相关的frpc和他的配置文件，国内下载使用Gitee镜像下载源不必
-
+可以下载相关的frpc和他的配置文件，国内下载使用Gitee镜像下载源不必
 担心下载问题，但是在更新时仍然使用Github检测更新下载，目前没找到国内替代品。
 
 ![屏幕截图 2024-08-31 231131](https://github.com/user-attachments/assets/ff13abed-c381-4140-aaf5-c1e40672db4e)
