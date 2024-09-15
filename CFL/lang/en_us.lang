@@ -1,22 +1,21 @@
-MENU_TITLE=            Welcome to CHml Frp Launcher
-MENU_OPTIONS=             ------------------------
-MENU_OPTION_1=                 [1]--Start frpc     
-MENU_OPTION_2=                 [2]--Modify ini/toml
-MENU_OPTION_3=                 [3]--Close frpc
-MENU_OPTION_7=                 [3]--Download frpc
-MENU_OPTION_6=                 [6]--About
-MENU_OPTION_9=                 [7]--Exit
-START_FRPC=Starting frpc
-MODIFY_CONFIG=Modifying configuration file ini/toml
-CLOSE_FRPC=Closing frpc
-DOWNLOAD_FRPCq=You've been fooled
-DOWNLOAD_FRPC=Downloading frpc
-EXITING=Exiting
-NAVIGATING=Navigating
-RETURNING_TO_START=Returning to the start page
-INPUT_PROMPT=Input (1-7) number=
-MENUT_TITLE=      Please select the version of frpc you want to use
-INPUT_PROMPTX=Input (1-5) number=
+M-1=            Welcome to CHml Frp Launcher
+M-s=             ------------------------
+M-2=                 [1]--Start frpc     
+M-3=                 [2]--Modify ini/toml
+M-4=                 [3]--Close frpc
+M-5=                 [3]--Download frpc
+M-6=                 [6]--About
+M-7=                 [7]--Exit
+M-8=Starting frpc
+M-9=Modifying configuration file ini/toml
+M-10=Closing frpc
+M-11=You've been fooled
+M-12=Downloading frpc
+M-13=Exiting
+M-14=Navigating
+M-15=Returning to the start page
+M-16=Input (1-7) number=
+M-17=      Please select the version of frpc you want to use
 Qyz-1=                 [1]--ChmlFrpc
 Qyz-2=                 [2]--Original frpc
 Qyz-3=                 [3]--Slimmed frpc

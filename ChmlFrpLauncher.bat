@@ -9,7 +9,7 @@
 ::YAwzuBVtJxjWCl3EqQJgSA==
 ::ZR4luwNxJguZRRnk
 ::Yhs/ulQjdF+5
-::cxAkpRVqdFKZSDk=
+::cxAkpRVqdFKZSjk=
 ::cBs/ulQjdF+5
 ::ZR41oxFsdFKZSTk=
 ::eBoioBt6dFKZSTk=
@@ -43,6 +43,7 @@ set X=0
 set v=1.8.4
 set CF=%cd%\CFL
 set CFL=ChmlFrpLauncher
+set lo=%CF%\.logs
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
 set config=%CF%\.config
@@ -53,13 +54,6 @@ set xz_folder=%CF%\Download
 set dz=%xz_folder%\%CFL%.exe
 set tempfile=%CF%\github.txt
 
-(
-    rmdir /s /q %xz_folder% 
-    del 1.bat
-    move "index.html" "%h_file%"
-    move "indext.html" "%h_file%" 
-) >>nul 2>&1
-
 set "content="
 for /f "usebackq delims=" %%A in ("%config%") do (
     set "content=!content!%%A"
@@ -67,23 +61,22 @@ for /f "usebackq delims=" %%A in ("%config%") do (
 echo !content! | find /i "lang" > nul
 if errorlevel 1 (
     :cl
+    cls
     (
     mkdir "%lang_folder%"
     mkdir "%h_file%"
     mkdir "%cd%\CFL\frp"
     move "zh_cn.lang" "%lang_folder%"
     move "en_us.lang" "%lang_folder%"
-    del /f zh_cn.lang 
-    del /f en_us.lang 
+    move "index.html" "%h_file%"
+    move "indext.html" "%h_file%" 
     ) >>nul 2>&1
-
     color %s%8
     type nul > %config%
-    echo tag_name=%v%>> %config%
-    echo name=frpc >> %config%
+    echo Version=%v%>> %config%
+    echo Name=frpc >> %config%
     echo Count=0 >> %config%
-    echo ktgx=0 >> %config%
-    title %CFL%
+    echo Update=true >> %config%
     echo.
     echo            Please choose your language:
     echo                     [1] Chinese-s           
@@ -93,16 +86,19 @@ if errorlevel 1 (
     
     if "%langn%"=="1" (
         set "selected_lang=zh_cn"
-        echo lang=zh_cn>> "%config%"
+        echo Lang=zh_cn>> "%config%"
     ) else if "%langn%"=="2" (
         set "selected_lang=en_us"
-        echo lang=en_us>> "%config%"
+        echo Lang=en_us>> "%config%"
     ) else (
         echo Invalid choice. Please try again. 
         timeout /t 2 > nul
         goto cl
     )
 )
+goto ip14
+
+:ip14
 color %s%8
 for /f "tokens=1,* delims==" %%a in (%config%) do (
     set "%%a=%%b"
@@ -110,17 +106,21 @@ for /f "tokens=1,* delims==" %%a in (%config%) do (
 for /f "tokens=1,* delims==" %%a in (%lang_folder%\%lang%.lang) do (
     set "%%a=%%b"
 )
-goto ip14
-:ip14
-if %ktgx% == 0 (
 
+(
+    rmdir /s /q %xz_folder% 
+    del 1.bat
+    del /f zh_cn.lang 
+    del /f en_us.lang 
+) >>nul 2>&1
+
+if %Update% == true (
     goto ip17
-) else if %ktgx% == 1 (
+) else if %Update% == false (
     goto ip18
 )
 
 :ip17
-
 Title !Qyz-33!
 
 curl -s -o "%tempfile%" %Api.Github%
@@ -137,7 +137,7 @@ set "download_url=!download_url:"=!"
 
 del %tempfile%
 
-for /f "tokens=1,2,3 delims=." %%a in ("%tag_name%") do (
+for /f "tokens=1,2,3 delims=." %%a in ("%Version%") do (
     set /a C_M=%%a
     set /a C_M=%%b
     set /a C_P=%%c
@@ -196,20 +196,20 @@ IF EXIST %frpc% (
 color %s%8
 cls
 echo.
-echo !MENU_TITLE! 
-echo !MENU_OPTIONS!
-echo !MENU_OPTION_1!
-echo !MENU_OPTION_2!
-echo !MENU_OPTION_3!
-echo !MENU_OPTIONS!
+echo !M-1! 
+echo !M-s!
+echo !M-2!
+echo !M-3!
+echo !M-4!
+echo !M-s!
 echo                  !Qyz-30!!l!
-echo                  !Qyz-31!!tag_name!
-echo !MENU_OPTIONS!
-echo !MENU_OPTION_6!
-echo !MENU_OPTION_9!
+echo                  !Qyz-31!!Version!
+echo !M-s!
+echo !M-6!
+echo !M-7!
 echo.
 
-choice /c 12345678 /n /m "!INPUT_PROMPT!"
+choice /c 12345678 /n /m "!M-16!"
 
 if %errorlevel% == 1 goto ip1
 if %errorlevel% == 2 goto ip2 
@@ -225,7 +225,7 @@ start "" %config%
 goto ip15
 
 :ip1
-echo !START_FRPC!
+echo !M-8!
 ping localhost -n 3 > nul
 cls 
 IF EXIST %toml% (
@@ -258,7 +258,7 @@ pause > nul
 goto ip15
 
 :ip2
-echo !MODIFY_CONFIG!
+echo !M-9!
 
 IF EXIST %toml% (
     start "" "%toml%"
@@ -270,7 +270,7 @@ goto ip15
 
 :ip3
 start "" "https://www.bilibili.com/video/BV1GJ411x7h7"
-echo !DOWNLOAD_FRPCq!
+echo !M-11!
 ping localhost -n 5 > nul
 goto ip15
 
@@ -287,19 +287,19 @@ start "" "%h_file%\indext.html"
 goto ip15
 
 :ip5
-echo !CLOSE_FRPC!
+echo !M-10!
 taskkill /im frpc.exe /f 
 goto ip15
 
 :ip6
 Color 3A
-echo !NAVIGATING!
+echo !M-14!
 start "" "%h_file%\index.html"
 ping localhost -n 5 > nul
 goto ip23
 
 :ip7
-echo !EXITING!
+echo !M-13!
 ping localhost -n 3 > nul
 exit 
 
@@ -309,18 +309,17 @@ exit
 :start 
 cls 
 echo.
-echo !MENUT_TITLE!
-echo !MENU_OPTIONS!
+echo !M-17!
+echo !M-s!
 echo !Qyz-1!
 echo !Qyz-2!
 echo !Qyz-3!
-echo !MENU_OPTIONS!
+echo !M-s!
 echo !Qyz-6!
 echo !Qyz-7!
 echo.
 
-
-choice /c 12345 /n /m "!INPUT_PROMPTX!"
+choice /c 12345 /n /m "!M-18!"
 
 if %errorlevel% == 1 goto ip9
 if %errorlevel% == 2 goto ip10
@@ -329,7 +328,7 @@ if %errorlevel% == 4 goto ip12
 if %errorlevel% == 5 goto ip15
 
 :ip9
-echo !DOWNLOAD_FRPC! 
+echo !M-12! 
 
 powershell curl -o %frpc% !Download link1!
 
@@ -345,7 +344,7 @@ IF EXIST %ini% (
 )
 
 :ip10
-echo !DOWNLOAD_FRPC! 
+echo !M-12! 
 powershell curl -o %frpc% !Download link3!
 
 IF EXIST %ini% (
@@ -360,7 +359,7 @@ IF EXIST %toml% (
 )
 
 :ip11
-echo !DOWNLOAD_FRPC! 
+echo !M-12! 
 powershell curl -o %frpc% !Download link4!
 
 IF EXIST %ini% (
@@ -384,7 +383,7 @@ ping localhost -n 2 > nul
 goto start
 
 :ip15
-echo !RETURNING_TO_START!
+echo !M-15!
 ping localhost -n 2 > nul
 goto begin
 
@@ -394,7 +393,7 @@ goto ip17
 
 :ip20
 echo !Qyz-30!!l!
-echo !Qyz-31!!tag_name!
+echo !Qyz-31!!Version!
 ping localhost -n 3 > nul
 
 if !L_MAJOR! gtr !C_MAJOR! (
@@ -451,12 +450,12 @@ cls
 title %CFL%
 echo.
 echo !Qyz-20! 
-echo !MENU_OPTIONS!
+echo !M-s!
 echo !Qyz-18!
 echo !Qyz-25!
-echo !MENU_OPTION_7!
+echo !M-5!
 echo !Qyz-32!
-echo !MENU_OPTIONS!
+echo !M-s!
 echo !Qyz-23!
 echo.
 
