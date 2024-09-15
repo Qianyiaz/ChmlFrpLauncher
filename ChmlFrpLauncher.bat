@@ -72,6 +72,7 @@ if errorlevel 1 (
     move "indext.html" "%h_file%" 
     ) >>nul 2>&1
     color %s%8
+    title %CFL%
     type nul > %config%
     echo Version=%v%>> %config%
     echo Name=frpc >> %config%
