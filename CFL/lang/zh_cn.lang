@@ -1,24 +1,22 @@
-MENU_TITLE=            欢迎 使用 CHml Frp Launcher（本产品是免费软件，请易做商业用途）
-MENU_OPTIONS=             ----------------------
-MENU_OPTION_1=                 [1]--启动 frpc     
-MENU_OPTION_2=                 [2]--修改 ini/toml
-MENU_OPTION_3=                 [3]--关闭 frpc
-MENU_OPTION_7=                 [3]--下载 frpc
-MENU_OPTION_4=                 [4]--千万 ；
-MENU_OPTION_5=                 [5]--别输 。
-MENU_OPTION_6=                 [6]--关于
-MENU_OPTION_9=                 [7]--退出
-START_FRPC=正在启动 frpc
-MODIFY_CONFIG=正在修改配置文件 ini/toml
-CLOSE_FRPC=正在关闭 frpc
-DOWNLOAD_FRPCq=你被骗了
-DOWNLOAD_FRPC=正在下载frpc
-EXITING=正在退出
-NAVIGATING=正在导航
-RETURNING_TO_START=返回启动页
-INPUT_PROMPT=输入（1-7）数字=
-MENUT_TITLE=            请选择您要使用的frpc版本
-INPUT_PROMPTX=输入（1-5）数字=
+M-1=            欢迎 使用 CHml Frp Launcher
+M-s=             ----------------------
+M-2=                 [1]--启动 frpc     
+M-3=                 [2]--修改 ini/toml
+M-4=                 [3]--关闭 frpc
+M-5=                 [3]--下载 frpc
+M-6=                 [6]--关于 页
+M-7=                 [7]--退出 CFL
+M-8=正在启动 frpc
+M-9=正在修改配置文件 ini/toml
+M-10=正在关闭 frpc
+M-11=你被骗了
+M-12=正在下载frpc
+M-13=正在退出
+M-14=正在导航
+M-15=返回启动页
+M-16=输入（1-7）数字=
+M-18=输入（1-5）数字=
+M-17=            请选择您要使用的frpc版本
 Qyz-1=                 [1]--ChmlFrpc
 Qyz-2=                 [2]--原版frpc
 Qyz-3=                 [3]--精简frpc
@@ -27,8 +25,7 @@ Qyz-7=                 [5]--返回启动页
 Qyz-8=下载完成
 Qyz-9=检测到您未下载frpc文件
 Qyz-10=正在转入下载页
-Qyz-11=frpc 版本
-Qyz-12=保存日志后，按任意键返回
+Qyz-12=按任意键返回启动页
 Qyz-13=系统损坏
 Qyz-14=15秒后电脑将恢复正常，千万别关闭界面 
 Qyz-15=哈哈哈哈哈哈哈哈
@@ -36,7 +33,7 @@ Qyz-18=                 [1]--检测更新
 Qyz-19=输入（1-4）数字=
 Qyz-20=              欢迎 来到 关于页
 Qyz-22=转入下载页中
-Qyz-23=                 [4]--返回启动页
+Qyz-23=                 [5]--返回启动页
 Qyz-25=                 [2]--作者页
 Qyz-26=转入关于页中
 Qyz-27=检测到新版本开始下载
@@ -44,12 +41,13 @@ Qyz-28=检测到无版本开始返回
 Qyz-29=下载失败
 Qyz-30=最新版本是:
 Qyz-31=而本版本是:
+Qyz-32=                 [4]--回声洞
+Qyz-33=检测更新中
+Qy=你已启动
+AS=次
+hsdxz=https://gitee.com/Qianyiaz/ChmlFrpLauncher-download/raw/main/%E5%9B%9E%E5%A3%B0%E6%B4%9E.txt
 Download link1=https://gitee.com/Qianyiaz/ChmlFrpLauncher/releases/download/0/ChmlFrpc.exe
 Download link2=https://gitee.com/Qianyiaz/ChmlFrpLauncher/releases/download/0/frpc.toml
 Download link3=https://gitee.com/Qianyiaz/ChmlFrpLauncher/releases/download/0/frpc.exe
 Download link4=https://gitee.com/Qianyiaz/ChmlFrpLauncher/releases/download/0/tiny.frpc.exe
 Api.Github=https://api.github.com/repos/Qianyiaz/ChmlFrpLauncher-download/releases/latest
-
-
-
-

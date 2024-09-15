@@ -1,37 +1,52 @@
-## ChmlFrpLauncher                
+## ChmlFrpLauncher
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/README.md">中文</a>
-## Introduction
+# # Introduction to Development
 
-This is a simple terminal batch file developed for the Windows operating system, originally a batch processing file but packaged into an exe file using Bat_To_Exe_Converter.
+This is a simple terminal bat file developed by terminal code in windows system, so it can only run in Windows.
 
-## Features
-      
-It is a tool that can launch frpc, edit configuration files, download different versions of frpc, and perform updates. 
+Originally, it was a batch file, but it was packaged into an exe file through Bat_To_Exe_Converter.
 
-frp is a widely used network penetration tool with average performance, and it is fully open-source on GitHub.
 
-<a href="https://github.com/fatedier/frp">Click here to go to the source project</a>
+# # General function
 
-## How to Use
-      
-Simply start the application and enter the number 123456 to use it, but you need to download frpc beforehand.
+It is an updatable tool that can start frpc, edit configuration files and download different versions of frpc.
 
-<a href="https://github.com/Qianyiaz/ChmlFrpLauncher/wiki">Click here to view the official wiki</a>
+Frp is a widely used intranet penetration tool with moderate performance, and it is completely open source in Github.
 
-![启动英语](https://github.com/user-attachments/assets/73963fe4-b6cd-49f6-b3af-21a1135f6665)
+<a href = "https://github.com/fatedier/FRP" > click to go to the source project </a >
 
-## Related Features
-      
-In version 1.8.0, ChmlFrpLauncher not only launches ChmlFrpc but also supports the original frp. 
 
-In version 1.8.3, ChmlFrpLauncher supports all languages, but you need to translate yourself by modifying the prefix in the config file.
-For example: Language file: `zh_cn.lang`       Configuration file: `lang=zh_cn`
+# # How to use it
 
-A new page has been added to download relevant frpc and its configuration files. For users in China, you can use the Gitee mirror for downloads without worrying about download issues. However, when updating, it still uses GitHub to check for updates and downloads, as no domestic alternatives have been found yet.
+Just enter 123456 digits after startup to use, but download frpc before.
 
-![下载英语](https://github.com/user-attachments/assets/0d4acb30-7cc1-411a-8dc9-039d1e6cb2d4)
+<a href = "https://github.com/qianyiaz/chmlfrplanucher/wiki" > click to view the official wiki</a >
 
-## Related Links
-      
-<a href="https://space.bilibili.com/1582404131">Click here to visit Bilibili</a>
-<a href="https://qm.qq.com/q/thFfQ0fFm2">Click here to join the QQ group</a>
+![屏幕截图 2024-08-31 230824](https://github.com/user-attachments/assets/55328475-775b-427f-818b-c68f4600332b)
+
+# # Function introduction
+
+In 1.8.0 ChmlFrpLauncher can not only start ChmlFrpc, but also start the original frp.
+
+In 1.8.3 ChmlFrpLauncher supports all languages, but you have to translate it yourself, just change it to a file prefix in the confing file.
+
+ChmlFrpLauncher will find the corresponding file in the lang folder according to the character after lang= and the. lang suffix.
+
+For example: ` lang = zh _ cn``` zh _ cn.lang`
+
+In version 1.8.3, ChmlFrpLauncher will automatically check for updates, but it will have a certain impact on slow access to github.
+
+A new page download related frpc and its configuration file has been added, so it is not necessary to use Gitee mirror download source for domestic download.
+
+I am worried about the download problem, but I still use Github to detect the update download when updating. So far, I have not found a domestic substitute.
+
+![屏幕截图 2024-08-31 230836](https://github.com/user-attachments/assets/b4e58a51-07e1-40f0-863b-c4d674e18d53)
+
+![屏幕截图 2024-08-31 230842](https://github.com/user-attachments/assets/6f9204ac-0037-4539-87ea-99dcaa4672f9)
+
+![屏幕截图 2024-08-31 230905](https://github.com/user-attachments/assets/4905476c-2d1d-4267-97c4-8f8f3eb82ce1)
+
+# # Related links
+
+<a href = "https://space.bilibili.com/1582404131" > Click to go to billbill</a >
+<a href = "https://qm.qq.com/q/thfq0fm2" > Click to go to QQ group </a >
