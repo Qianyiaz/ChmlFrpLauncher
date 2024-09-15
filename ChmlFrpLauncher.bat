@@ -43,7 +43,6 @@ set X=0
 set v=1.8.4
 set CF=%cd%\CFL
 set CFL=ChmlFrpLauncher
-set lo=%CF%\.logs
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
 set config=%CF%\.config
@@ -52,7 +51,7 @@ set ini=%CF%\frp\frpc.ini
 set toml=%CF%\frp\frpc.toml
 set xz_folder=%CF%\Download
 set dz=%xz_folder%\%CFL%.exe
-set tempfile=%CF%\github.txt
+set tempfile=%CF%\.github
 
 set "content="
 for /f "usebackq delims=" %%A in ("%config%") do (
@@ -438,7 +437,7 @@ type nul > 1.bat
 (
     echo @echo off
     echo del /f "%cd%\ChmlFrpLauncher.exe"
-    echo del "%cd%\CFL\config.txt"
+    echo del "%cd%\CFL\.config"
     echo move "%cd%\CFL\Download\ChmlFrpLauncher.exe" "%cd%"
     echo start ChmlFrpLauncher.exe
     echo exit
