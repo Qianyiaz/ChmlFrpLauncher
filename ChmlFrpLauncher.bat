@@ -18,7 +18,7 @@
 ::dAsiuh18IRvcCxnZtBJQ
 ::cRYluBh/LU+EWAnk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJhZkMaGErUXA==
+::cxY6rQJ7JhzQF1fEqQJhZkMaGEraXA==
 ::ZQ05rAF9IBncCkqN+0xwdVsFAlzMaAs=
 ::ZQ05rAF9IAHYFVzEqQITIBZYahaSEGqvCLYU7fqb
 ::eg0/rx1wNQPfEVWB+kM9LVsJDCeKMWecFKUw6f317OKCsC0=
@@ -38,17 +38,14 @@
 @echo off
 setlocal enabledelayedexpansion
 
+set CF=%cd%\CFL
+set config=%CF%\.config
 set s=7
 set X=0
 set v=1.8.4
-set CF=%cd%\CFL
 set CFL=ChmlFrpLauncher
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
-set config=%CF%\.config
-set frpc=%CF%\frp\frpc.exe
-set ini=%CF%\frp\frpc.ini
-set toml=%CF%\frp\frpc.toml
 set xz_folder=%CF%\Download
 set dz=%xz_folder%\%CFL%.exe
 set tempfile=%CF%\.github
@@ -64,7 +61,6 @@ if errorlevel 1 (
     (
     mkdir "%lang_folder%"
     mkdir "%h_file%"
-    mkdir "%cd%\CFL\frp"
     move "zh_cn.lang" "%lang_folder%"
     move "en_us.lang" "%lang_folder%"
     move "index.html" "%h_file%"
@@ -96,16 +92,49 @@ if errorlevel 1 (
         goto cl
     )
 )
-goto ip14
 
-:ip14
-color %s%8
+:frp
 for /f "tokens=1,* delims==" %%a in (%config%) do (
     set "%%a=%%b"
 )
-for /f "tokens=1,* delims==" %%a in (%lang_folder%\%lang%.lang) do (
+
+for /f "tokens=1,* delims==" %%a in (%lang_folder%\%Lang%.lang) do (
     set "%%a=%%b"
 )
+color %s%8
+set "content="
+for /f "usebackq delims=" %%A in ("%config%") do (
+    set "content=!content!%%A"
+)
+echo !content! | find /i "lujin" > nul
+if errorlevel 1 (
+    cls
+    echo.
+    set /p "lujin=!M-19!"
+    if !lujin! == 1 (
+        mkdir %CF%\frp
+        set lujin=%CF%\frp
+        echo lujin=!lujin!>> "%config%"
+        goto ip14
+    ) else (
+         if exist "!lujin!" (
+         echo lujin=!lujin!>> "%config%"
+         goto ip14
+         ) else (
+           goto frp
+         )
+    )
+)
+goto ip14
+
+:ip14  
+for /f "tokens=1,* delims==" %%a in (%config%) do (
+    set "%%a=%%b"
+)
+
+set frpc=%lujin%\frpc.exe
+set ini=%lujin%\frpc.ini
+set toml=%lujin%\frpc.toml
 
 (
     rmdir /s /q %xz_folder% 
@@ -185,6 +214,7 @@ IF EXIST %frpc% (
         goto begin
     )
 ) ELSE (
+    cls
     echo !Qyz-9!
     echo !Qyz-10!
     ping localhost -n 3 > nul
