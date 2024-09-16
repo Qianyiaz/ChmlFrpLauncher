@@ -58,6 +58,7 @@ Count=x
 
 ![屏幕截图 2024-08-31 231241](https://github.com/user-attachments/assets/40f479d5-447c-4369-a9f7-455c5a6f447b)
 
+(目前图片仅供参考，新版本已经大变样)
 
 ## 5.相关链接
       
