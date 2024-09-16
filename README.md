@@ -2,7 +2,6 @@
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/README_en.md">English</a>
 
 ## 1.开发介绍
-(目前发布在releases为正式版，想下载快早版本可以从最新仓库bin文件中下载ChmlFrpLauncher.exe文件)
 
   这是一个windows系统中终端代码所开发的简单终端bat文件，所以只能在Windows中运行。
 原本他是一个批处理文件，但通过Bat_To_Exe_Converter打包成exe文件。
@@ -25,6 +24,7 @@
 ![屏幕截图 2024-08-31 231123](https://github.com/user-attachments/assets/339155b7-3825-4270-9451-ae5a0c655fdc)
 
 ## 4.功能介绍
+>(目前发布在releases为正式版，想下载快早版本可以从最新仓库bin文件中下载ChmlFrpLauncher.exe文件)
 
   ChmlFrpLauncher支持所有语言，但是你必须自己翻译，只需要在confing文件中修改为文件前缀，
 会根据你填lang=后面的字符加上.lang后缀在lang文件夹中寻找对应文件。
