@@ -36,6 +36,7 @@
 ::
 ::978f952a14a936cc963da21a135fa983
 @echo off
+chcp 65001 >nul
 setlocal enabledelayedexpansion
 
 set CF=%cd%\CFL
@@ -97,7 +98,6 @@ if errorlevel 1 (
 for /f "tokens=1,* delims==" %%a in (%config%) do (
     set "%%a=%%b"
 )
-
 for /f "tokens=1,* delims==" %%a in (%lang_folder%\%Lang%.lang) do (
     set "%%a=%%b"
 )
@@ -117,12 +117,12 @@ if errorlevel 1 (
         echo lujin=!lujin!>> "%config%"
         goto ip14
     ) else (
-         if exist "!lujin!" (
-         echo lujin=!lujin!>> "%config%"
-         goto ip14
-         ) else (
-           goto frp
-         )
+        if exist "!lujin!" (
+        echo lujin=!lujin!>> "%config%"
+        goto ip14
+        ) else (
+            goto frp
+        )
     )
 )
 goto ip14
