@@ -18,7 +18,7 @@
 ::dAsiuh18IRvcCxnZtBJQ
 ::cRYluBh/LU+EWAnk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJhZkMaGEraXA==
+::cxY6rQJ7JhzQF1fEqQJhZkMaGErbXA==
 ::ZQ05rAF9IBncCkqN+0xwdVsFAlzMaAs=
 ::ZQ05rAF9IAHYFVzEqQITIBZYahaSEGqvCLYU7fqb
 ::eg0/rx1wNQPfEVWB+kM9LVsJDCeKMWecFKUw6f317OKCsC0=
@@ -70,10 +70,12 @@ if errorlevel 1 (
     color %s%8
     title %CFL%
     type nul > %config%
-    echo Version=%v%>> %config%
-    echo Name=frpc >> %config%
-    echo Count=0 >> %config%
-    echo Update=true >> %config%
+    (
+    echo Version=%v%
+    echo Name=frpc
+    echo Count=0
+    echo Update=true 
+    ) >> %config%
     echo.
     echo            Please choose your language:
     echo                     [1] Chinese-s           
