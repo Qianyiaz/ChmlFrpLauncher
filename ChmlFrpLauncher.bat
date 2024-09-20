@@ -51,8 +51,10 @@ set xz_folder=%CF%\Download
 set dz=%xz_folder%\%CFL%.exe
 set tempfile=%CF%\.github
 
+color %s%8
+
 set "content="
-for /f "usebackq delims=" %%A in ("%config%") do (
+for /f "usebackq delims=" %%A in ("%config%") do ( 
     set "content=!content!%%A"
 )
 echo !content! | find /i "lang" > nul
@@ -97,30 +99,26 @@ if errorlevel 1 (
 )
 
 :frp
-for /f "tokens=1,* delims==" %%a in (%config%) do (
-    set "%%a=%%b"
-)
-for /f "tokens=1,* delims==" %%a in (%lang_folder%\%Lang%.lang) do (
-    set "%%a=%%b"
-)
-color %s%8
+for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
+for /f "tokens=1,* delims==" %%a in (%lang_folder%\%Lang%.lang) do ( set "%%a=%%b")
+
 set "content="
 for /f "usebackq delims=" %%A in ("%config%") do (
     set "content=!content!%%A"
 )
-echo !content! | find /i "lujin" > nul
+echo !content! | find /i "Path_file" > nul 
 if errorlevel 1 (
     cls
     echo.
-    set /p "lujin=!M-19!"
-    if !lujin! == 1 (
+    set /p "Path_file=!M-19!"
+    if !Path_file! == 1 (
         mkdir %CF%\frp
-        set lujin=%CF%\frp
-        echo lujin=!lujin!>> "%config%"
+        set Path_file=%CF%\frp
+        echo Path_file=!Path_file!>> "%config%"
         goto ip14
     ) else (
-        if exist "!lujin!" (
-        echo lujin=!lujin!>> "%config%"
+        if exist "!Path_file!" (
+        echo Path_file=!Path_file!>> "%config%"
         goto ip14
         ) else (
             goto frp
@@ -130,13 +128,11 @@ if errorlevel 1 (
 goto ip14
 
 :ip14  
-for /f "tokens=1,* delims==" %%a in (%config%) do (
-    set "%%a=%%b"
-)
+for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
 
-set frpc=%lujin%\frpc.exe
-set ini=%lujin%\frpc.ini
-set toml=%lujin%\frpc.toml
+set frpc=%Path_file%\frpc.exe
+set ini=%Path_file%\frpc.ini
+set toml=%Path_file%\frpc.toml
 
 (
     rmdir /s /q %xz_folder% 
@@ -257,6 +253,8 @@ if %errorlevel% == 8 goto ip28
 
 :ip28
 start "" %config%
+pause
+for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
 goto ip15
 
 :ip1
