@@ -11,14 +11,14 @@
 ::Yhs/ulQjdF+5
 ::cxAkpRVqdFKZSjk=
 ::cBs/ulQjdF+5
-::ZR41oxFsdFKZSTk=
+::ZR41oxFsdFKZSDk=
 ::eBoioBt6dFKZSTk=
 ::cRo6pxp7LAbNWATEpSI=
 ::egkzugNsPRvcWATEpCI=
 ::dAsiuh18IRvcCxnZtBJQ
 ::cRYluBh/LU+EWAnk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJhZkMaGErWXA==
+::cxY6rQJ7JhzQF1fEqQJhZkMaGErbXA==
 ::ZQ05rAF9IBncCkqN+0xwdVsFAlzMaAs=
 ::ZQ05rAF9IAHYFVzEqQITIBZYahaSEGqvCLYU7fqb
 ::eg0/rx1wNQPfEVWB+kM9LVsJDCeKMWecFKUw6f317OKCsC0=
@@ -30,32 +30,31 @@
 ::ZQ0/vhVqMQ3MEVWAtB9witJlVR7CbjvoUtU=
 ::Zg8zqx1/OA3MEVWAtB9witJlVR7CbjvoUtU=
 ::dhA7pRFwIByZRRkCA4JQ
-::Zh4grVQjdCyDJGyX8VAjFAxVQgOOOWKGIrAP4/z0/9agq1kVQeADW4fW1pKcMMwS/0vnfZM/6nhTlvcvBBZUWAC7Qg4hp21Ks3bLMt+Z0w==
-::YB416Ek+Zm8=
+::Zh4grVQjdCyDJGyX8VAjFAxVQgOOOWKGIrAP4/z0/9agq1kVQeADW4fW1pKcMMwS/0vnfZM/6llSlccqHgt0fwelbQcxuyBHrmHl
+::YB416Ek+ZG8=
 ::
 ::
 ::978f952a14a936cc963da21a135fa983
 @echo off
+chcp 65001 >nul
 setlocal enabledelayedexpansion
 
+set CF=%cd%\CFL
+set config=%CF%\.config
 set s=7
 set X=0
 set v=1.8.4
-set CF=%cd%\CFL
 set CFL=ChmlFrpLauncher
-set lo=%CF%\.logs
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
-set config=%CF%\.config
-set frpc=%CF%\frp\frpc.exe
-set ini=%CF%\frp\frpc.ini
-set toml=%CF%\frp\frpc.toml
 set xz_folder=%CF%\Download
 set dz=%xz_folder%\%CFL%.exe
-set tempfile=%CF%\github.txt
+set tempfile=%CF%\.github
+
+color %s%8
 
 set "content="
-for /f "usebackq delims=" %%A in ("%config%") do (
+for /f "usebackq delims=" %%A in ("%config%") do ( 
     set "content=!content!%%A"
 )
 echo !content! | find /i "lang" > nul
@@ -65,7 +64,6 @@ if errorlevel 1 (
     (
     mkdir "%lang_folder%"
     mkdir "%h_file%"
-    mkdir "%cd%\CFL\frp"
     move "zh_cn.lang" "%lang_folder%"
     move "en_us.lang" "%lang_folder%"
     move "index.html" "%h_file%"
@@ -74,10 +72,12 @@ if errorlevel 1 (
     color %s%8
     title %CFL%
     type nul > %config%
-    echo Version=%v%>> %config%
-    echo Name=frpc >> %config%
-    echo Count=0 >> %config%
-    echo Update=true >> %config%
+    (
+    echo Version=%v%
+    echo Name=frpc
+    echo Count=0
+    echo Update=true 
+    ) >> %config%
     echo.
     echo            Please choose your language:
     echo                     [1] Chinese-s           
@@ -97,22 +97,50 @@ if errorlevel 1 (
         goto cl
     )
 )
+
+:frp
+for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
+for /f "tokens=1,* delims==" %%a in (%lang_folder%\%Lang%.lang) do ( set "%%a=%%b")
+
+set "content="
+for /f "usebackq delims=" %%A in ("%config%") do (
+    set "content=!content!%%A"
+)
+echo !content! | find /i "Path_file" > nul 
+if errorlevel 1 (
+    cls
+    echo.
+    set /p "Path_file=!M-19!"
+    if !Path_file! == 1 (
+        mkdir %CF%\frp
+        set Path_file=%CF%\frp
+        echo Path_file=!Path_file!>> "%config%"
+        goto ip14
+    ) else (
+        if exist "!Path_file!" (
+        echo Path_file=!Path_file!>> "%config%"
+        goto ip14
+        ) else (
+            goto frp
+        )
+    )
+)
 goto ip14
 
-:ip14
-color %s%8
-for /f "tokens=1,* delims==" %%a in (%config%) do (
-    set "%%a=%%b"
-)
-for /f "tokens=1,* delims==" %%a in (%lang_folder%\%lang%.lang) do (
-    set "%%a=%%b"
-)
+:ip14  
+for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
+
+set frpc=%Path_file%\frpc.exe
+set ini=%Path_file%\frpc.ini
+set toml=%Path_file%\frpc.toml
 
 (
     rmdir /s /q %xz_folder% 
     del 1.bat
     del /f zh_cn.lang 
     del /f en_us.lang 
+    del /f index.html
+    del /f indext.html
 ) >>nul 2>&1
 
 if %Update% == true (
@@ -184,6 +212,7 @@ IF EXIST %frpc% (
         goto begin
     )
 ) ELSE (
+    cls
     echo !Qyz-9!
     echo !Qyz-10!
     ping localhost -n 3 > nul
@@ -196,6 +225,7 @@ IF EXIST %frpc% (
 :begin
 color %s%8
 cls
+Title %CFL%
 echo.
 echo !M-1! 
 echo !M-s!
@@ -223,6 +253,8 @@ if %errorlevel% == 8 goto ip28
 
 :ip28
 start "" %config%
+pause
+for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
 goto ip15
 
 :ip1
@@ -303,7 +335,6 @@ goto ip23
 echo !M-13!
 ping localhost -n 3 > nul
 exit 
-
 
 
 
@@ -436,7 +467,7 @@ type nul > 1.bat
 (
     echo @echo off
     echo del /f "%cd%\ChmlFrpLauncher.exe"
-    echo del "%cd%\CFL\config.txt"
+    echo del "%cd%\CFL\.config"
     echo move "%cd%\CFL\Download\ChmlFrpLauncher.exe" "%cd%"
     echo start ChmlFrpLauncher.exe
     echo exit
