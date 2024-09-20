@@ -44,6 +44,7 @@ Version=1.8.4
 Name=frpc 
 Update=true
 Lang=zh_cn
+Path_file=c:\XX\XXX
 Count=x
 ```
 
