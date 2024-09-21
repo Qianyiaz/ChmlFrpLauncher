@@ -1,52 +1,61 @@
-## ChmlFrpLauncher
+# ChmlFrpLauncher
+
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/README.md">中文</a>
-# # Introduction to Development
 
-This is a simple terminal bat file developed by terminal code in windows system, so it can only run in Windows.
+## 1. Introduction to Development
 
-Originally, it was a batch file, but it was packaged into an exe file through Bat_To_Exe_Converter.
+This is a simple terminal batch file developed using command line instructions for Windows systems, meaning it can only run on Windows. Originally a batch processing file, it has been packaged into an exe file using Bat_To_Exe_Converter.
 
+## 2. General Functionality
 
-# # General function
+It is a tool that can start frpc, edit configuration files, download different versions of frpc, and perform updates. Frp is a widely used tunneling tool with decent performance, and it is fully open source on GitHub.
 
-It is an updatable tool that can start frpc, edit configuration files and download different versions of frpc.
+<a href="https://github.com/fatedier/frp">Click here to visit the source project</a>
 
-Frp is a widely used intranet penetration tool with moderate performance, and it is completely open source in Github.
+## 3. How to Use
 
-<a href = "https://github.com/fatedier/FRP" > click to go to the source project </a >
+Simply start the application and input the number 123456 to use it. However, you must download frpc beforehand.
 
+<a href="https://github.com/Qianyiaz/ChmlFrpLauncher/wiki">Click here to view the official wiki</a>
 
-# # How to use it
+![Screenshot 2024-08-31 231123](https://github.com/user-attachments/assets/339155b7-3825-4270-9451-ae5a0c655fdc)
 
-Just enter 123456 digits after startup to use, but download frpc before.
+## 4. Features Overview
 
-<a href = "https://github.com/qianyiaz/chmlfrplanucher/wiki" > click to view the official wiki</a >
+> (The version released in releases is the official version; if you want to download a faster and earlier version, you can download ChmlFrpLauncher.exe from the latest repository's bin folder)
 
-![屏幕截图 2024-08-31 230824](https://github.com/user-attachments/assets/55328475-775b-427f-818b-c68f4600332b)
+ChmlFrpLauncher supports all languages, but you will need to translate it yourself by modifying the prefix in the config file. It will search for the corresponding files in the lang folder based on the character you filled in after `lang=` with the `.lang` suffix.
 
-# # Function introduction
+For example: `Name=zh_cn` `zh_cn.lang`
 
-In 1.8.0 ChmlFrpLauncher can not only start ChmlFrpc, but also start the original frp.
+ChmlFrpLauncher will automatically check for updates, but those with slow access to GitHub may experience some delay. This feature is enabled by default and can be changed to `Update=false`.
 
-In 1.8.3 ChmlFrpLauncher supports all languages, but you have to translate it yourself, just change it to a file prefix in the confing file.
+When starting frpc, ChmlFrpLauncher will create a new window named as indicated in Name=. You only need to change the value following `Name=`.
 
-ChmlFrpLauncher will find the corresponding file in the lang folder according to the character after lang= and the. lang suffix.
+For example: `Name=frpc` `frpc`
 
-For example: ` lang = zh _ cn``` zh _ cn.lang`
+```
+Version=1.8.4
+Name=frpc 
+Update=true
+Lang=zh_cn
+Path_file=c:\XX\XXX
+Count=x
+```
 
-In version 1.8.3, ChmlFrpLauncher will automatically check for updates, but it will have a certain impact on slow access to github.
+You can download relevant frpc and its configuration files. If you're in China, you can use Gitee mirrors for downloading without worrying about download issues. However, for updates, it still checks for updates on GitHub, as no domestic alternatives have been found yet.
 
-A new page download related frpc and its configuration file has been added, so it is not necessary to use Gitee mirror download source for domestic download.
+![Screenshot 2024-08-31 231131](https://github.com/user-attachments/assets/ff13abed-c381-4140-aaf5-c1e40672db4e)
 
-I am worried about the download problem, but I still use Github to detect the update download when updating. So far, I have not found a domestic substitute.
+![Screenshot 2024-08-31 231118](https://github.com/user-attachments/assets/6083495f-ae09-4d1a-9440-479dedf7553f)
 
-![屏幕截图 2024-08-31 230836](https://github.com/user-attachments/assets/b4e58a51-07e1-40f0-863b-c4d674e18d53)
+![Screenshot 2024-08-31 231241](https://github.com/user-attachments/assets/40f479d5-447c-4369-a9f7-455c5a6f447b)
 
-![屏幕截图 2024-08-31 230842](https://github.com/user-attachments/assets/6f9204ac-0037-4539-87ea-99dcaa4672f9)
+> (The images are for reference only; the new version has undergone significant changes.)
 
-![屏幕截图 2024-08-31 230905](https://github.com/user-attachments/assets/4905476c-2d1d-4267-97c4-8f8f3eb82ce1)
+## 5. Related Links
 
-# # Related links
+> Please give us a star! wwwwwwwwwww
 
-<a href = "https://space.bilibili.com/1582404131" > Click to go to billbill</a >
-<a href = "https://qm.qq.com/q/thfq0fm2" > Click to go to QQ group </a >
+<a href="https://space.bilibili.com/1582404131">Click here to visit Bilibili</a>
+<a href="https://qm.qq.com/q/thFfQ0fFm2">Click here to visit QQ Group</a>
