@@ -18,6 +18,9 @@ M-16=Input (1-7) number=
 M-17=      Please select the version of frpc you want to use
 M-18=Input (1-5) number=
 M-19=Enter the path to select the FRP (if you do not want to choose, you can enter 1):
+M-20=This is the configuration file:
+M-21=Please enter the configuration file (line number):
+M-22=Please enter the configuration file prefix:
 Qyz-1=                 [1]--ChmlFrpc
 Qyz-2=                 [2]--Original frpc
 Qyz-3=                 [3]--Slimmed frpc

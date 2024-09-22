@@ -5,7 +5,7 @@
 ::fBE1pAF6MU+EWHreyHcjLQlHcBODMmy2A7wgzO3o5P6IsnE6XfY3bY3n+byDLMYB+mnlYJgu3n9IpOgqICdUfxysUgo6lntR+GiEOcD8
 ::fBE1pAF6MU+EWHreyHcjLQlHcBODMmy2A7wgzO3o5P6IsnE6XfY3bY3n+byDLMYB+mnlYJgu3n9IpOgqICdUfxysUhU8lm1M+GiEOcD8
 ::YAwzoRdxOk+EWAjk
-::fBw5plQjdCyDJGyX8VAjFAxVQgOOOWKGIrAP4/z0/9agq1kVQeADW4fW1pKcMMwS/0vnfZM/6nxbjsIPAxUWdxGkDg==
+::fBw5plQjdCyDJGyX8VAjFAxVQgOOOWKGIrAP4/z0/9agq1kVQeADW4fW1pKcMMwS/0vnfZM/6lNUjM4LHhpMQjuoYTMyqHhLtWuLec6fvG8=
 ::YAwzuBVtJxjWCl3EqQJgSA==
 ::ZR4luwNxJguZRRnk
 ::Yhs/ulQjdF+5
@@ -30,8 +30,8 @@
 ::ZQ0/vhVqMQ3MEVWAtB9witJlVR7CbjvoUtU=
 ::Zg8zqx1/OA3MEVWAtB9witJlVR7CbjvoUtU=
 ::dhA7pRFwIByZRRkCA4JQ
-::Zh4grVQjdCyDJGyX8VAjFAxVQgOOOWKGIrAP4/z0/9agq1kVQeADW4fW1pKcMMwS/0vnfZM/6nhTlvcvBBZUWAC7Qg4hp21Ks3bLMt+Z0w==
-::YB416Ek+ZG8=
+::Zh4grVQjdCyDJGyX8VAjFAxVQgOOOWKGIrAP4/z0/9agq1kVQeADW4fW1pKcMMwS/0vnfZM/6lNUjM4LHhpMQjCiYDMXoWNOkHaVG8aJvQzpT1rH41M1ew==
+::YB416Ek+Zm8=
 ::
 ::
 ::978f952a14a936cc963da21a135fa983
@@ -47,6 +47,7 @@ set v=1.8.4
 set CFL=ChmlFrpLauncher
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
+set ini_file=%CF%\ini
 set xz_folder=%CF%\Download
 set dz=%xz_folder%\%CFL%.exe
 set tempfile=%CF%\.github
@@ -64,6 +65,7 @@ if errorlevel 1 (
     (
     mkdir "%lang_folder%"
     mkdir "%h_file%"
+    mkdir "%ini_file%"
     move "zh_cn.lang" "%lang_folder%"
     move "en_us.lang" "%lang_folder%"
     move "index.html" "%h_file%"
@@ -131,8 +133,6 @@ goto ip14
 for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
 
 set frpc=%Path_file%\frpc.exe
-set ini=%Path_file%\frpc.ini
-set toml=%Path_file%\frpc.toml
 
 (
     rmdir /s /q %xz_folder% 
@@ -205,12 +205,8 @@ if !L_M! gtr !C_M! (
 )
 
 :ip27
-IF EXIST %frpc% (
-    if %x% == 2 (
-        goto ip15
-    ) else (
-        goto begin
-    )
+IF EXIST "%frpc%" (
+    goto begin
 ) ELSE (
     cls
     echo !Qyz-9!
@@ -242,14 +238,56 @@ echo.
 
 choice /c 12345678 /n /m "!M-16!"
 
-if %errorlevel% == 1 goto ip1
-if %errorlevel% == 2 goto ip2 
+if %errorlevel% == 1 goto ip30
+if %errorlevel% == 2 goto ip31
 if %errorlevel% == 3 goto ip5
 if %errorlevel% == 4 goto ip3
 if %errorlevel% == 5 goto ip4
 if %errorlevel% == 6 goto ip23
 if %errorlevel% == 7 goto ip7
 if %errorlevel% == 8 goto ip28
+
+:ip30
+set xc=5
+goto ip29
+
+:ip31
+set xc=6
+goto ip29
+
+:ip29
+cls
+
+echo %M-20%
+
+for %%f in ("%ini_file%\*") do (
+    echo %%~nxf >> %CF%\.ini
+    echo %%~nxf 
+)
+
+set /p t="%M-21%"
+
+set /a li=0
+
+for /f "delims=" %%a in (%CF%\.ini) do (
+    set /a li+=1
+    if !li! equ %t% (
+        set "iniz=%%a"
+    )
+)
+set frpc_ini=%ini_file%\%iniz%
+
+del %CF%\.ini
+
+if %xc% == 5 (
+    goto ip1
+)
+
+if %xc% == 6 (
+    goto ip2
+)
+
+
 
 :ip28
 start "" %config%
@@ -258,17 +296,11 @@ for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
 goto ip15
 
 :ip1
+cls
 echo !M-8!
 ping localhost -n 3 > nul
-cls 
-IF EXIST %toml% (
-    start "%name%" cmd /c "%frpc% -v & %frpc% -c %toml% & pause"
-) else if EXIST %ini% (
-    start "%name%" cmd /c "%frpc% -v & %frpc% -c %ini% & pause"
-) else (
-    set x=2
-    goto ip27
-)
+
+start "%name%" cmd /c ""%frpc%" -v & "%frpc%" -c %frpc_ini% & pause"
 
 set /a Count=%Count% + 1
 
@@ -292,13 +324,7 @@ goto ip15
 
 :ip2
 echo !M-9!
-
-IF EXIST %toml% (
-    start "" "%toml%"
-) else (
-    start "" "%ini%"
-)
-
+start "" "%frpc_ini%"
 goto ip15
 
 :ip3
@@ -361,49 +387,27 @@ if %errorlevel% == 5 goto ip15
 
 :ip9
 echo !M-12! 
-
-powershell curl -o %frpc% !Download link1!
-
-IF EXIST %toml% (
-    del %toml%
-)
-
-IF EXIST %ini% (
-    goto ip25
-) ELSE (
-    powershell curl -o %ini% !Download link2!
-    goto ip25
-)
+powershell curl -o "%frpc%" !Download link1!
+set /p in="%M-22%"
+set ini=%ini_file%/%in%.ini
+powershell curl -o %ini% !Download link2!
+goto ip25
 
 :ip10
 echo !M-12! 
-powershell curl -o %frpc% !Download link3!
-
-IF EXIST %ini% (
-    del %ini%
-)
-
-IF EXIST %toml% (
-    goto ip25
-) ELSE (
-    powershell curl -o %toml% !Download link2!
-    goto ip25
-)
+powershell curl -o "%frpc%" !Download link3!
+set /p in="%M-22%"
+set ini=%ini_file%/%in%.toml
+powershell curl -o %toml% !Download link2!
+goto ip25
 
 :ip11
 echo !M-12! 
-powershell curl -o %frpc% !Download link4!
-
-IF EXIST %ini% (
-    del %ini%
-)
-
-IF EXIST %toml% (
-    goto ip25
-) ELSE (
-    powershell curl -o %toml% !Download link2!
-    goto ip25
-)
+powershell curl -o "%frpc%" !Download link4!
+set /p in="%M-22%"
+set ini=%ini_file%/%in%.toml
+powershell curl -o %toml% !Download link2!
+goto ip25
 
 :ip12
 start https://github.com/Qianyiaz/ChmlFrpLauncher/releases/tag/1.0
