@@ -78,7 +78,7 @@ if errorlevel 1 (
     echo Version=%v%
     echo Name=frpc
     echo Count=0
-    echo Update=true 
+    echo Update=true
     ) >> %config%
     echo.
     echo            Please choose your language:
@@ -111,7 +111,6 @@ for /f "usebackq delims=" %%A in ("%config%") do (
 echo !content! | find /i "Path_file" > nul 
 if errorlevel 1 (
     cls
-    echo.
     set /p "Path_file=!M-19!"
     if !Path_file! == 1 (
         mkdir %CF%\frp
@@ -208,12 +207,14 @@ if !L_M! gtr !C_M! (
 IF EXIST "%frpc%" (
     goto begin
 ) ELSE (
-    cls
-    echo !Qyz-9!
-    echo !Qyz-10!
-    ping localhost -n 3 > nul
-    goto start
+    goto gost
 )
+:gost
+cls
+echo !Qyz-9!
+echo !Qyz-10!
+ping localhost -n 3 > nul
+goto start
 
 
 
@@ -256,6 +257,11 @@ set xc=6
 goto ip29
 
 :ip29
+
+echo !M-23!
+
+ping localhost -n 3 > nul
+
 cls
 
 echo %M-20%
@@ -275,17 +281,21 @@ for /f "delims=" %%a in (%CF%\.ini) do (
         set "iniz=%%a"
     )
 )
+
 set frpc_ini=%ini_file%\%iniz%
 
 del %CF%\.ini
 
-if %xc% == 5 (
-    goto ip1
+if defined iniz (
+    if !xc! == 5 (
+        goto ip1
+    ) else if !xc! == 6 (
+        goto ip2
+    )
+) else (
+    goto gost
 )
-
-if %xc% == 6 (
-    goto ip2
-)
+goto ip15
 
 
 
@@ -299,6 +309,7 @@ goto ip15
 cls
 echo !M-8!
 ping localhost -n 3 > nul
+cls
 
 start "%name%" cmd /c ""%frpc%" -v & "%frpc%" -c %frpc_ini% & pause"
 
@@ -387,7 +398,9 @@ if %errorlevel% == 5 goto ip15
 
 :ip9
 echo !M-12! 
-powershell curl -o "%frpc%" !Download link1!
+IF not EXIST "%frpc%" (
+    powershell curl -o "%frpc%" !Download link1!
+)
 set /p in="%M-22%"
 set ini=%ini_file%/%in%.ini
 powershell curl -o %ini% !Download link2!
@@ -395,7 +408,9 @@ goto ip25
 
 :ip10
 echo !M-12! 
-powershell curl -o "%frpc%" !Download link3!
+IF not EXIST "%frpc%" (
+    powershell curl -o "%frpc%" !Download link3!
+)
 set /p in="%M-22%"
 set ini=%ini_file%/%in%.toml
 powershell curl -o %toml% !Download link2!
@@ -403,7 +418,9 @@ goto ip25
 
 :ip11
 echo !M-12! 
-powershell curl -o "%frpc%" !Download link4!
+IF not EXIST "%frpc%" (
+    powershell curl -o "%frpc%" !Download link3!
+)
 set /p in="%M-22%"
 set ini=%ini_file%/%in%.toml
 powershell curl -o %toml% !Download link2!
