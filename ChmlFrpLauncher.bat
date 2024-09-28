@@ -18,8 +18,8 @@
 ::dAsiuh18IRvcCxnZtBJQ
 ::cRYluBh/LU+EWAnk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJhZkMaGErbXA==
-::ZQ05rAF9IBncCkqN+0xwdVsFAlzMaAs=
+::cxY6rQJ7JhzQF1fEqQJhZkMaGUrTXA==
+::ZQ05rAF9IBncCkqN+0xwdVsFAlzMaQs=
 ::ZQ05rAF9IAHYFVzEqQITIBZYahaSEGqvCLYU7fqb
 ::eg0/rx1wNQPfEVWB+kM9LVsJDCeKMWecFKUw6f317OKCsC0=
 ::fBEirQZwNQPfEVWB+kM9LVsJDCeKMWecFKUw6f317OKCsC0=
@@ -43,7 +43,7 @@ set CF=%cd%\CFL
 set config=%CF%\.config
 set s=7
 set X=0
-set v=1.8.4
+set v=1.8.5
 set CFL=ChmlFrpLauncher
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
