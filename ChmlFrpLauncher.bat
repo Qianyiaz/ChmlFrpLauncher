@@ -516,7 +516,7 @@ if %errorlevel% neq 0 (
 )
 pause
 
-start "" cmd /c "@echo off & del /f "%cd%\%CFL%.exe" & del "%config%" & move "%xz_folder%\%CFL%.exe" "%cd%" & start %CFL%.exe"
+start "" cmd /c "@echo off & del /f "%cd%\%CFL%.exe" & del "%CF%" & move "%xz_folder%\%CFL%.exe" "%cd%" & start %CFL%.exe"
 
 exit
 
