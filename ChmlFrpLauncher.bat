@@ -281,6 +281,13 @@ for %%f in ("%ini_file%\*") do (
     call :sc "%%~nxf"
 )
 
+if not defined sz (
+    goto gost
+)
+if %sz% == 0 (
+    goto gost
+)
+
 echo.
 set /p t="%M-21%"
 
@@ -317,15 +324,13 @@ set frpc_ini=%ini_file%\%iniz%
 
 del %CF%\.ini
 
-if defined iniz (
-    if !xc! == 5 (
-        goto ip1
-    ) else if !xc! == 6 (
-        goto ip2
-    )
-) else (
-    goto gost
+
+if !xc! == 5 (
+    goto ip1
+) else if !xc! == 6 (
+    goto ip2
 )
+
 
 :ip28
 start "" %config%
