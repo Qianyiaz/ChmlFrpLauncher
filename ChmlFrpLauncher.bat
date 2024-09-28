@@ -248,12 +248,21 @@ if %errorlevel% == 6 goto ip23
 if %errorlevel% == 7 goto ip7
 if %errorlevel% == 8 goto ip28
 
+:sc
+set /a sz=%sz% + 1
+echo               [%sz%]--%%%1%
+goto :eof
+
 :ip30
 set xc=5
 goto ip29
 
 :ip31
 set xc=6
+goto ip29
+
+:cw
+echo %M-25%
 goto ip29
 
 :ip29
@@ -264,14 +273,32 @@ ping localhost -n 3 > nul
 
 cls
 
+echo.
 echo %M-20%
 
 for %%f in ("%ini_file%\*") do (
     echo %%~nxf >> %CF%\.ini
-    echo %%~nxf 
+    call :sc "%%~nxf"
 )
 
+echo.
 set /p t="%M-21%"
+
+set /a t=%t% + 1 
+
+if %t% == 1 (
+    set sz=0
+    goto cw
+) else (
+    set /a t=%t% - 1 
+)
+
+if %t% gtr %sz% (
+    set sz=0
+    goto cw
+)
+
+set sz=0
 
 set /a li=0
 
@@ -281,6 +308,10 @@ for /f "delims=" %%a in (%CF%\.ini) do (
         set "iniz=%%a"
     )
 )
+
+echo !M-24!%iniz%
+
+ping localhost -n 3 > nul
 
 set frpc_ini=%ini_file%\%iniz%
 
@@ -295,9 +326,6 @@ if defined iniz (
 ) else (
     goto gost
 )
-goto ip15
-
-
 
 :ip28
 start "" %config%
