@@ -48,7 +48,7 @@ set CFL=ChmlFrpLauncher
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
 set ini_file=%CF%\ini
-set xz_folder=%CF%\Download
+set xz_folder=%cd%\Download
 set dz=%xz_folder%\%CFL%.exe
 set tempfile=%CF%\.github
 
@@ -514,9 +514,11 @@ if %errorlevel% neq 0 (
 ) else (
     echo !Qyz-8!
 )
+echo !Qyz-34!
 pause
 
-start "" cmd /c "@echo off & del /f "%cd%\%CFL%.exe" & del "%CF%" & move "%xz_folder%\%CFL%.exe" "%cd%" & start %CFL%.exe"
+rmdir /s /q "%CF%"
+start "" cmd /c "@echo off & del /f "%cd%\%CFL%.exe" & move "%xz_folder%\%CFL%.exe" "%cd%" & rmdir /s /q %xz_folder% & start %CFL%.exe"
 
 exit
 
