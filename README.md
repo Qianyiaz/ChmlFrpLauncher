@@ -6,7 +6,7 @@
 </p>
 
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher">![Github stars](https://img.shields.io/github/stars/Qianyiaz/ChmlFrpLauncher.svg)</a>
-
+[![GitHub Releases Stats](https://img.shields.io/github/downloads/Qianyiaz/ChmlFrpLauncher/total.svg?logo=github)](https://github.com/Qianyiaz/ChmlFrpLauncher)
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/README_en.md">![English](https://img.shields.io/badge/English-click-blue)</a>
 
 <br/>
