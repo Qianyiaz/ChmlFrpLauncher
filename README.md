@@ -36,7 +36,7 @@
 
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/wiki">点击前往查看官方wiki</a>
 
-![屏幕截图 2024-08-31 231123](https://github.com/user-attachments/assets/339155b7-3825-4270-9451-ae5a0c655fdc)
+![9ca0cc9e5eae117d240d51a6f251b745](https://github.com/user-attachments/assets/98b03b2f-e4c1-402f-a2bb-a87c5f85788f)
 
 <br/>
 
@@ -69,11 +69,11 @@ Count=x
   可以下载相关的frpc和他的配置文件，国内下载使用Gitee镜像下载源不必
 担心下载问题，但是在更新时仍然使用Github检测更新下载，目前没找到国内替代品。
 
-![屏幕截图 2024-08-31 231131](https://github.com/user-attachments/assets/ff13abed-c381-4140-aaf5-c1e40672db4e)
+![44867dbfc5a9b9c2819cb873883f3131](https://github.com/user-attachments/assets/1ac8ffe4-7649-4a76-b0f0-dbeb702f00fc)
 
-![屏幕截图 2024-08-31 231118](https://github.com/user-attachments/assets/6083495f-ae09-4d1a-9440-479dedf7553f)
+![QQ_1727694284413](https://github.com/user-attachments/assets/a28c15ae-9548-4a94-9e4c-5e710c188e13)
 
-![屏幕截图 2024-08-31 231241](https://github.com/user-attachments/assets/40f479d5-447c-4369-a9f7-455c5a6f447b)
+![0c5eacd574dbda6e681a595c931dc2ce](https://github.com/user-attachments/assets/e4add26b-ca78-4128-ac11-60cef6ed9d13)
 
 >(目前图片仅供参考，新版本已经大变样)
 
