@@ -14,7 +14,9 @@
 
 ## 1.开发介绍
 
-  这是一个windows系统中终端代码所开发的简单终端bat文件，所以只能在Windows中运行。
+  这是一个windows系统中终端代码所开发的简单终端bat文件，所以只能在Windows中运行，
+还有他需要win10或win11及以上的运行环境，win10以下可能会出现下载失败的提示，需安装powershell和curl，不支持32操作系统。
+
 原本他是一个批处理文件，但通过Bat_To_Exe_Converter打包成exe文件。
 
 <br/>
