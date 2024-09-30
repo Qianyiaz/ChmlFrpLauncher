@@ -35,8 +35,7 @@
 ::
 ::
 ::978f952a14a936cc963da21a135fa983
-@echo off
-chcp 65001 >nul
+@echo off & chcp 65001 >nul
 setlocal enabledelayedexpansion
 
 set CF=%cd%\CFL
@@ -47,7 +46,6 @@ set v=1.8.5
 set CFL=ChmlFrpLauncher
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
-set ini_file=%CF%\ini
 set xz_folder=%cd%\Download
 set dz=%xz_folder%\%CFL%.exe
 set tempfile=%CF%\.github
@@ -66,6 +64,7 @@ if errorlevel 1 (
     mkdir "%lang_folder%"
     mkdir "%h_file%"
     mkdir "%ini_file%"
+    mkdir %CF%\frp
     move "zh_cn.lang" "%lang_folder%"
     move "en_us.lang" "%lang_folder%"
     move "index.html" "%h_file%"
@@ -111,10 +110,15 @@ for /f "usebackq delims=" %%A in ("%config%") do (
 echo !content! | find /i "Path_file" > nul 
 if errorlevel 1 (
     cls
-    set /p "Path_file=!M-19!"
-    if !Path_file! == 1 (
-        mkdir %CF%\frp
-        set Path_file=%CF%\frp
+    echo.
+    echo !M-19!
+    echo.
+    echo !M-26!
+    echo.
+    set /p "Path_file=!M-27!"
+    if !Path_file! == Yes (
+        mkdir %CF%\ini
+        set Path_file=%CF%\ini
         echo Path_file=!Path_file!>> "%config%"
         goto ip14
     ) else (
@@ -126,12 +130,13 @@ if errorlevel 1 (
         )
     )
 )
-goto ip14
 
 :ip14  
 for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
 
-set frpc=%Path_file%\frpc.exe
+set ini_file=%Path_file%
+
+set frpc=%CF%\frp\frpc.exe
 
 (
     rmdir /s /q %xz_folder% 
@@ -287,9 +292,12 @@ if not defined sz (
 if %sz% == 0 (
     goto gost
 )
-
-echo.
+echo !M-28!
 set /p t="%M-21%"
+
+if %t% == Yes (
+    goto ip15
+)
 
 set /a t=%t% + 1 
 
