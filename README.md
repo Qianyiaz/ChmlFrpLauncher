@@ -2,10 +2,14 @@
 
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/README_en.md">English</a>
 
+<br/>
+
 ## 1.开发介绍
 
   这是一个windows系统中终端代码所开发的简单终端bat文件，所以只能在Windows中运行。
 原本他是一个批处理文件，但通过Bat_To_Exe_Converter打包成exe文件。
+
+<br/>
 
 ## 2.大概功能
 
@@ -14,6 +18,8 @@
 
 <a href="https://github.com/fatedier/frp">点击前往源项目</a>
 
+<br/>
+
 ## 3.如何使用
 
 只需启动后输入123456数字即可使用，但在之前要下载frpc。
@@ -21,6 +27,8 @@
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/wiki">点击前往查看官方wiki</a>
 
 ![屏幕截图 2024-08-31 231123](https://github.com/user-attachments/assets/339155b7-3825-4270-9451-ae5a0c655fdc)
+
+<br/>
 
 ## 4.功能介绍
 >
@@ -40,7 +48,7 @@
 例如： `Name=frpc`  `frpc`
 
 ```
-Version=1.8.4
+Version=1.8.5
 Name=frpc 
 Update=true
 Lang=zh_cn
@@ -58,6 +66,8 @@ Count=x
 ![屏幕截图 2024-08-31 231241](https://github.com/user-attachments/assets/40f479d5-447c-4369-a9f7-455c5a6f447b)
 
 >(目前图片仅供参考，新版本已经大变样)
+
+<br/>
 
 ## 5.相关链接
 >
