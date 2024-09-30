@@ -250,7 +250,7 @@ if %errorlevel% == 8 goto ip28
 
 :sc
 set /a sz=%sz% + 1
-echo               [%sz%]--%%%1%
+echo                [%sz%]--%%%1%
 goto :eof
 
 :ip30
