@@ -47,7 +47,7 @@
   ChmlFrpLauncher支持所有语言，但是你必须自己翻译，只需要在confing文件中修改为文件前缀，
 会根据你填lang=后面的字符加上.lang后缀在lang文件夹中寻找对应文件。
 
-例如： `Name=zh_cn`  `zh_cn.lang`
+例如： `Lang=zh_cn`  `zh_cn.lang`
 
   ChmlFrpLauncher会自动检查更新，但是对github访问慢的会有一定程度的影响，
 但这个功能默认是开着的，需要改成 `Update=false`
