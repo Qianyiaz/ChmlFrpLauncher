@@ -1,6 +1,13 @@
 # ChmlFrpLauncher
 
-<a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/README_en.md">English</a>
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/1cbdf8df-3910-4bc2-91a7-a5768aa41557"
+        height="200">
+</p>
+
+<a href="https://github.com/Qianyiaz/ChmlFrpLauncher">![Github stars](https://img.shields.io/github/stars/Qianyiaz/ChmlFrpLauncher.svg)</a>
+
+<a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/README_en.md">![English](https://img.shields.io/badge/English-click-blue)</a>
 
 <br/>
 
