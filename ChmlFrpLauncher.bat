@@ -285,7 +285,6 @@ for %%f in ("%ini_file%\*") do (
     echo %%~nxf >> %CF%\.ini
     call :sc "%%~nxf"
 )
-
 if not defined sz (
     goto gost
 )
