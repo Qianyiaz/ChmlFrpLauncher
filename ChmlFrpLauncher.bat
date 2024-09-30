@@ -442,7 +442,11 @@ echo !M-12!
 IF not EXIST "%frpc%" (
     powershell curl -o "%frpc%" !Download link1!
 )
+echo !M-28!
 set /p in="%M-22%"
+if %in% == Yes (
+    goto ip15
+)
 set ini=%ini_file%/%in%.ini
 powershell curl -o %ini% !Download link2!
 goto ip25
@@ -452,18 +456,26 @@ echo !M-12!
 IF not EXIST "%frpc%" (
     powershell curl -o "%frpc%" !Download link3!
 )
+echo !M-28!
 set /p in="%M-22%"
-set ini=%ini_file%/%in%.toml
+if %in% == Yes (
+    goto ip15
+)
+set toml=%ini_file%/%in%.toml
 powershell curl -o %toml% !Download link2!
 goto ip25
 
 :ip11
 echo !M-12! 
 IF not EXIST "%frpc%" (
-    powershell curl -o "%frpc%" !Download link3!
+    powershell curl -o "%frpc%" !Download link4!
 )
+echo !M-28!
 set /p in="%M-22%"
-set ini=%ini_file%/%in%.toml
+if %in% == Yes (
+    goto ip15
+)
+set toml=%ini_file%/%in%.toml
 powershell curl -o %toml% !Download link2!
 goto ip25
 
