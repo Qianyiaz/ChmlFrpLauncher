@@ -41,6 +41,7 @@ setlocal enabledelayedexpansion
 set CF=%cd%\CFL
 set config=%CF%\.config
 set s=7
+set z=8
 set X=0
 set v=1.8.5
 set CFL=ChmlFrpLauncher
@@ -50,12 +51,10 @@ set xz_folder=%cd%\Download
 set dz=%xz_folder%\%CFL%.exe
 set tempfile=%CF%\.github
 
-color %s%8
+color %s%%z% & title %CFL%
 
 set "content="
-for /f "usebackq delims=" %%A in ("%config%") do ( 
-    set "content=!content!%%A"
-)
+for /f "usebackq delims=" %%A in ("%config%") do ( set "content=!content!%%A")
 echo !content! | find /i "lang" > nul
 if errorlevel 1 (
     :cl
@@ -70,8 +69,7 @@ if errorlevel 1 (
     move "index.html" "%h_file%"
     move "indext.html" "%h_file%" 
     ) >>nul 2>&1
-    color %s%8
-    title %CFL%
+    color %s%%z% & title %CFL%
     type nul > %config%
     (
     echo Version=%v%
@@ -109,6 +107,7 @@ for /f "usebackq delims=" %%A in ("%config%") do (
 )
 echo !content! | find /i "Path_file" > nul 
 if errorlevel 1 (
+    :ini_find
     cls
     echo.
     echo !M-19!
@@ -131,7 +130,12 @@ if errorlevel 1 (
     )
 )
 
-:ip14  
+:ip14
+
+IF not EXIST "%Path_file%" (
+    goto ini_find
+)
+
 for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
 
 set ini_file=%Path_file%
@@ -225,7 +229,7 @@ goto start
 
 
 :begin
-color %s%8
+color %s%%z%
 cls
 Title %CFL%
 echo.
@@ -272,6 +276,8 @@ goto ip29
 
 :ip29
 
+set sz=0
+
 echo !M-23!
 
 ping localhost -n 3 > nul
@@ -285,34 +291,24 @@ for %%f in ("%ini_file%\*") do (
     echo %%~nxf >> %CF%\.ini
     call :sc "%%~nxf"
 )
-if not defined sz (
-    goto gost
-)
-if %sz% == 0 (
-    goto gost
-)
+if not defined sz goto gost
+
+if %sz% == 0 goto gost
+
 echo !M-28!
 set /p t="%M-21%"
 
-if %t% == Yes (
-    goto ip15
-)
+if %t% == Yes goto ip15
 
 set /a t=%t% + 1 
 
 if %t% == 1 (
-    set sz=0
     goto cw
 ) else (
     set /a t=%t% - 1 
 )
 
-if %t% gtr %sz% (
-    set sz=0
-    goto cw
-)
-
-set sz=0
+if %t% gtr %sz% goto cw
 
 set /a li=0
 
