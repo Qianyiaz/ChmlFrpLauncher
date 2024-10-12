@@ -75,7 +75,7 @@ Count=x
 
 ![0c5eacd574dbda6e681a595c931dc2ce](https://github.com/user-attachments/assets/e4add26b-ca78-4128-ac11-60cef6ed9d13)
 
->(目前图片仅供参考，新版本已经大变样)
+>(目前图片仅供参考，新版本已经大变样) <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/latest/Integrat/Bin/ChmlFrpLauncher.exe">![English](https://img.shields.io/badge/Download-click-blue)</a>
 
 <br/>
 
