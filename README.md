@@ -14,8 +14,9 @@
 
 ## 1.开发介绍
 
-这是一个windows系统中终端代码所开发的简单终端bat文件，所以只能在Windows中运行，
-还有他需要win10或win11及以上的运行环境，win10以下可能会出现下载失败的提示，需安装powershell和curl，不支持32操作系统。
+这是一个windows系统中终端代码(batch)所开发的简单终端程序，所以只能在Windows中运行，还有他需要win10或win11及以上的运行环境，win10以下可能会出现下载失败的提示，需安装powershell和curl，不支持32操作系统。
+
+作者有想象做个安装包，把环境也一起打包。(同意的举手)
 
 原本他是一个批处理文件，但通过Bat_To_Exe_Converter打包成exe文件。
 
@@ -23,8 +24,11 @@
 
 ## 2.大概功能
 
-它是一个能启动frpc，并能编辑配置文件，下载不同版本的frpc，可更新的工具。
-而frp是一种应用广泛，性能中规中矩的内网穿透工具，而且在Github完全开源。
+而它需要配置ini/toml文件，需要在Frp网站获取，例如ChmlFrp。如果你不知道如何配置请查看ChmlFrp官方文档。
+
+<a href="https://docs.chcat.cn/docs/chmlfrp/%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/tutorial">点击前往官方文档</a>
+
+它是一个能启动frpc，并能编辑配置文件，下载不同版本的frpc，可更新的工具。而frp是一种应用广泛，性能中规中矩的内网穿透工具，而且在Github完全开源。
 
 <a href="https://github.com/fatedier/frp">点击前往源项目</a>
 
@@ -44,7 +48,7 @@
 >
 >(目前发布在releases为正式版，想下载快早版本可以从最新仓库bin文件中下载ChmlFrpLauncher.exe文件)
 
-<a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/1.8.5/Integrat/Bin/ChmlFrpLauncher.exe">![Download](https://img.shields.io/badge/Download-click-blue)</a>
+<a href="https://github.com/Qianyiaz/ChmlFrpLauncher/raw/refs/heads/1.8.5/Integrat/Bin/ChmlFrpLauncher.exe">![Download](https://img.shields.io/badge/Download-click-blue)</a>
 
 ### 4.1.语言设置与支持
 
