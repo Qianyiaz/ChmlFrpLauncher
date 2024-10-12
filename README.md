@@ -8,7 +8,7 @@
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher">![Github stars](https://img.shields.io/github/stars/Qianyiaz/ChmlFrpLauncher.svg)</a>
 [![GitHub Releases Stats](https://img.shields.io/github/downloads/Qianyiaz/ChmlFrpLauncher/total.svg?logo=github)](https://github.com/Qianyiaz/ChmlFrpLauncher)
 [![GitHub release](https://img.shields.io/github/tag/Qianyiaz/ChmlFrpLauncher.svg?label=release)](github.com/Qianyiaz/ChmlFrpLauncher)
-<a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/main/README_en.md">![English](https://img.shields.io/badge/English-click-blue)</a>
+<a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/1.8.4/README_en.md">![English](https://img.shields.io/badge/English-click-blue)</a>
 
 <br/>
 
