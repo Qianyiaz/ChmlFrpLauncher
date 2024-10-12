@@ -45,19 +45,23 @@
 >(目前发布在releases为正式版，想下载快早版本可以从最新仓库bin文件中下载ChmlFrpLauncher.exe文件)
 ><a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/1.8.5/Integrat/Bin/ChmlFrpLauncher.exe">![Download](https://img.shields.io/badge/Download-click-blue)</a>
 
-### 语言设置与支持
+### 4.1.语言设置与支持
 
 ChmlFrpLauncher支持所有语言，但是你必须自己翻译，只需要在confing文件中修改为文件前缀，
 会根据你填lang=后面的字符加上.lang后缀在lang文件夹中寻找对应文件。
 
 例如： `Lang=zh_cn`  `zh_cn.lang`
 
-### 自动检查更新开启与关闭
+<br/>
+
+### 4.2.自动检查更新开启与关闭
 
 ChmlFrpLauncher会自动检查更新，但是对github访问慢的会有一定程度的影响，
 但这个功能默认是开着的，需要改成 `Update=false`
 
-### 启动窗口设置
+<br/>
+
+### 4.3.启动窗口设置
 
 ChmlFrpLauncher在启动frpc时会新建窗口，窗口名称Name，只需要修改Name=
 后面的frpc即可。
@@ -73,12 +77,14 @@ Path_file=c:\XX\XXX
 Count=x
 ```
 
-### 下载源Github/Gitee
+<br/>
+
+### 4.4.下载源Github/Gitee
 
 可以下载相关的frpc和他的配置文件，国内下载使用Gitee镜像下载源不必
 担心下载问题，但是在更新时仍然使用Github检测更新下载，目前没找到国内替代品。
 
-### 图例
+### 4.5.图例
 
 ![44867dbfc5a9b9c2819cb873883f3131](https://github.com/user-attachments/assets/1ac8ffe4-7649-4a76-b0f0-dbeb702f00fc)
 
