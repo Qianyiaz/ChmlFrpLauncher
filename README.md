@@ -43,6 +43,7 @@
 ## 4.功能介绍
 >
 >(目前发布在releases为正式版，想下载快早版本可以从最新仓库bin文件中下载ChmlFrpLauncher.exe文件)
+
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/1.8.5/Integrat/Bin/ChmlFrpLauncher.exe">![Download](https://img.shields.io/badge/Download-click-blue)</a>
 
 ### 4.1.语言设置与支持
@@ -70,7 +71,7 @@ ChmlFrpLauncher在启动frpc时会新建窗口，窗口名称Name，只需要修
 
 <br/>
 
-#### .config 基本结构
+#### 4.4. .config 基本结构
 
 ```
 Version=1.8.5
@@ -81,12 +82,12 @@ Path_file=c:\XX\XXX
 Count=x
 ```
 
-### 4.4.下载源Github/Gitee
+### 4.5.下载源Github/Gitee
 
 可以下载相关的frpc和他的配置文件，国内下载使用Gitee镜像下载源不必
 担心下载问题，但是在更新时仍然使用Github检测更新下载，目前没找到国内替代品。
 
-### 4.5.图例
+### 4.6.图例
 
 ![44867dbfc5a9b9c2819cb873883f3131](https://github.com/user-attachments/assets/1ac8ffe4-7649-4a76-b0f0-dbeb702f00fc)
 
