@@ -6,6 +6,8 @@
 
 # ChmlFrpLauncher
 
+`ChmlFrpLauncher` 是 [frp](https://github.com/fatedier/frp) 的第三方桌面应用，适用于 Windows 11/10.
+
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher">![Github stars](https://img.shields.io/github/stars/Qianyiaz/ChmlFrpLauncher.svg)</a>
 [![GitHub Releases Stats](https://img.shields.io/github/downloads/Qianyiaz/ChmlFrpLauncher/total.svg?logo=github)](https://github.com/Qianyiaz/ChmlFrpLauncher)
 [![GitHub release](https://img.shields.io/github/tag/Qianyiaz/ChmlFrpLauncher.svg?label=release)](github.com/Qianyiaz/ChmlFrpLauncher)
