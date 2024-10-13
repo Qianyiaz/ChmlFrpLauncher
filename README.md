@@ -1,9 +1,10 @@
-# ChmlFrpLauncher
-
 <p align="center">
     <img src="https://github.com/user-attachments/assets/1cbdf8df-3910-4bc2-91a7-a5768aa41557"
         height="195">
 </p>
+<div align="center">
+
+# ChmlFrpLauncher
 
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher">![Github stars](https://img.shields.io/github/stars/Qianyiaz/ChmlFrpLauncher.svg)</a>
 [![GitHub Releases Stats](https://img.shields.io/github/downloads/Qianyiaz/ChmlFrpLauncher/total.svg?logo=github)](https://github.com/Qianyiaz/ChmlFrpLauncher)
