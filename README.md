@@ -12,6 +12,7 @@
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher/blob/1.8.4/README_en.md">![English](https://img.shields.io/badge/English-click-blue)</a>
 
 <br/>
+</div>
 
 ## 1.开发介绍
 
