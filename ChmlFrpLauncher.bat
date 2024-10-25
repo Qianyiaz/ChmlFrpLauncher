@@ -18,8 +18,8 @@
 ::dAsiuh18IRvcCxnZtBJQ
 ::cRYluBh/LU+EWAnk
 ::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJhZkMaGErbXA==
-::ZQ05rAF9IBncCkqN+0xwdVsFAlzMaAs=
+::cxY6rQJ7JhzQF1fEqQJhZkMaGUrTXA==
+::ZQ05rAF9IBncCkqN+0xwdVsFAlzMaQs=
 ::ZQ05rAF9IAHYFVzEqQITIBZYahaSEGqvCLYU7fqb
 ::eg0/rx1wNQPfEVWB+kM9LVsJDCeKMWecFKUw6f317OKCsC0=
 ::fBEirQZwNQPfEVWB+kM9LVsJDCeKMWecFKUw6f317OKCsC0=
@@ -35,29 +35,26 @@
 ::
 ::
 ::978f952a14a936cc963da21a135fa983
-@echo off
-chcp 65001 >nul
+@echo off & chcp 65001 >nul
 setlocal enabledelayedexpansion
 
 set CF=%cd%\CFL
 set config=%CF%\.config
 set s=7
+set z=8
 set X=0
-set v=1.8.4
+set v=1.8.5
 set CFL=ChmlFrpLauncher
 set lang_folder=%CF%\lang
 set h_file=%CF%\html
-set ini_file=%CF%\ini
-set xz_folder=%CF%\Download
+set xz_folder=%cd%\Download
 set dz=%xz_folder%\%CFL%.exe
 set tempfile=%CF%\.github
 
-color %s%8
+color %s%%z% & title %CFL%
 
 set "content="
-for /f "usebackq delims=" %%A in ("%config%") do ( 
-    set "content=!content!%%A"
-)
+for /f "usebackq delims=" %%A in ("%config%") do ( set "content=!content!%%A")
 echo !content! | find /i "lang" > nul
 if errorlevel 1 (
     :cl
@@ -66,19 +63,19 @@ if errorlevel 1 (
     mkdir "%lang_folder%"
     mkdir "%h_file%"
     mkdir "%ini_file%"
+    mkdir %CF%\frp
     move "zh_cn.lang" "%lang_folder%"
     move "en_us.lang" "%lang_folder%"
     move "index.html" "%h_file%"
     move "indext.html" "%h_file%" 
     ) >>nul 2>&1
-    color %s%8
-    title %CFL%
+    color %s%%z% & title %CFL%
     type nul > %config%
     (
     echo Version=%v%
     echo Name=frpc
     echo Count=0
-    echo Update=true 
+    echo Update=true
     ) >> %config%
     echo.
     echo            Please choose your language:
@@ -110,12 +107,17 @@ for /f "usebackq delims=" %%A in ("%config%") do (
 )
 echo !content! | find /i "Path_file" > nul 
 if errorlevel 1 (
+    :ini_find
     cls
     echo.
-    set /p "Path_file=!M-19!"
-    if !Path_file! == 1 (
-        mkdir %CF%\frp
-        set Path_file=%CF%\frp
+    echo !M-19!
+    echo.
+    echo !M-26!
+    echo.
+    set /p "Path_file=!M-27!"
+    if !Path_file! == Yes (
+        mkdir %CF%\ini
+        set Path_file=%CF%\ini
         echo Path_file=!Path_file!>> "%config%"
         goto ip14
     ) else (
@@ -127,12 +129,18 @@ if errorlevel 1 (
         )
     )
 )
-goto ip14
 
-:ip14  
+:ip14
+
+IF not EXIST "%Path_file%" (
+    goto ini_find
+)
+
 for /f "tokens=1,* delims==" %%a in (%config%) do ( set "%%a=%%b")
 
-set frpc=%Path_file%\frpc.exe
+set ini_file=%Path_file%
+
+set frpc=%CF%\frp\frpc.exe
 
 (
     rmdir /s /q %xz_folder% 
@@ -208,18 +216,20 @@ if !L_M! gtr !C_M! (
 IF EXIST "%frpc%" (
     goto begin
 ) ELSE (
-    cls
-    echo !Qyz-9!
-    echo !Qyz-10!
-    ping localhost -n 3 > nul
-    goto start
+    goto gost
 )
+:gost
+cls
+echo !Qyz-9!
+echo !Qyz-10!
+ping localhost -n 3 > nul
+goto start
 
 
 
 
 :begin
-color %s%8
+color %s%%z%
 cls
 Title %CFL%
 echo.
@@ -247,6 +257,11 @@ if %errorlevel% == 6 goto ip23
 if %errorlevel% == 7 goto ip7
 if %errorlevel% == 8 goto ip28
 
+:sc
+set /a sz=%sz% + 1
+echo                [%sz%]--%%%1%
+goto :eof
+
 :ip30
 set xc=5
 goto ip29
@@ -255,17 +270,45 @@ goto ip29
 set xc=6
 goto ip29
 
+:cw
+echo %M-25%
+goto ip29
+
 :ip29
+
+set sz=0
+
+echo !M-23!
+
+ping localhost -n 3 > nul
+
 cls
 
+echo.
 echo %M-20%
 
 for %%f in ("%ini_file%\*") do (
-    echo %%~nxf >> %CF%\.ini
-    echo %%~nxf 
+    echo %%~nxf > %CF%\.ini
+    call :sc "%%~nxf"
+)
+if not defined sz goto gost
+
+if %sz% == 0 goto gost
+
+echo !M-28!
+set /p t="%M-21%"
+
+if %t% == Yes goto ip15
+
+set /a t=%t% + 1 
+
+if %t% == 1 (
+    goto cw
+) else (
+    set /a t=%t% - 1 
 )
 
-set /p t="%M-21%"
+if %t% gtr %sz% goto cw
 
 set /a li=0
 
@@ -275,18 +318,21 @@ for /f "delims=" %%a in (%CF%\.ini) do (
         set "iniz=%%a"
     )
 )
+
+echo !M-24!%iniz%
+
+ping localhost -n 3 > nul
+
 set frpc_ini=%ini_file%\%iniz%
 
 del %CF%\.ini
 
-if %xc% == 5 (
-    goto ip1
-)
 
-if %xc% == 6 (
+if !xc! == 5 (
+    goto ip1
+) else if !xc! == 6 (
     goto ip2
 )
-
 
 
 :ip28
@@ -299,6 +345,7 @@ goto ip15
 cls
 echo !M-8!
 ping localhost -n 3 > nul
+cls
 
 start "%name%" cmd /c ""%frpc%" -v & "%frpc%" -c %frpc_ini% & pause"
 
@@ -387,25 +434,43 @@ if %errorlevel% == 5 goto ip15
 
 :ip9
 echo !M-12! 
-powershell curl -o "%frpc%" !Download link1!
+IF not EXIST "%frpc%" (
+    powershell curl -o "%frpc%" !Download link1!
+)
+echo !M-28!
 set /p in="%M-22%"
+if %in% == Yes (
+    goto ip15
+)
 set ini=%ini_file%/%in%.ini
 powershell curl -o %ini% !Download link2!
 goto ip25
 
 :ip10
 echo !M-12! 
-powershell curl -o "%frpc%" !Download link3!
+IF not EXIST "%frpc%" (
+    powershell curl -o "%frpc%" !Download link3!
+)
+echo !M-28!
 set /p in="%M-22%"
-set ini=%ini_file%/%in%.toml
+if %in% == Yes (
+    goto ip15
+)
+set toml=%ini_file%/%in%.toml
 powershell curl -o %toml% !Download link2!
 goto ip25
 
 :ip11
 echo !M-12! 
-powershell curl -o "%frpc%" !Download link4!
+IF not EXIST "%frpc%" (
+    powershell curl -o "%frpc%" !Download link4!
+)
+echo !M-28!
 set /p in="%M-22%"
-set ini=%ini_file%/%in%.toml
+if %in% == Yes (
+    goto ip15
+)
+set toml=%ini_file%/%in%.toml
 powershell curl -o %toml% !Download link2!
 goto ip25
 
@@ -464,9 +529,11 @@ if %errorlevel% neq 0 (
 ) else (
     echo !Qyz-8!
 )
+echo !Qyz-34!
 pause
 
-start "" cmd /c "@echo off & del /f "%cd%\%CFL%.exe" & del "%config%" & move "%xz_folder%\%CFL%.exe" "%cd%" & start %CFL%.exe"
+rmdir /s /q "%CF%"
+start "" cmd /c "@echo off & del /f "%cd%\%CFL%.exe" & move "%xz_folder%\%CFL%.exe" "%cd%" & rmdir /s /q %xz_folder% & start %CFL%.exe"
 
 exit
 
