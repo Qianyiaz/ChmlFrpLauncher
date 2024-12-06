@@ -4,7 +4,7 @@
 </p>
 <div align="center">
 
-# ChmlFrpLauncher
+# 此项目已废弃，将要删除
 
 `ChmlFrpLauncher` 是 [frp](https://github.com/fatedier/frp) 的第三方控制台应用，适用于 Windows 11/10.
 
