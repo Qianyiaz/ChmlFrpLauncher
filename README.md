@@ -4,8 +4,7 @@
 </p>
 <div align="center">
 
-# 此项目已废弃，将要删除
-
+# ChmlFrpLauncher
 `ChmlFrpLauncher` 是 [frp](https://github.com/fatedier/frp) 的第三方控制台应用，适用于 Windows 11/10.
 
 <a href="https://github.com/Qianyiaz/ChmlFrpLauncher">![Github stars](https://img.shields.io/github/stars/Qianyiaz/ChmlFrpLauncher.svg)</a>
@@ -115,3 +114,4 @@ Count=x
 
 <a href="https://space.bilibili.com/1582404131">点击前往billbill</a>
 <a href="https://qm.qq.com/q/thFfQ0fFm2">点击前往QQ群</a>
+<a href="https://github.com/Qianyiaz/ChmlFrp_Professional_Launcher">点击前往重构项目</a>
